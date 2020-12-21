@@ -1,0 +1,993 @@
+fileFormatVersion: 2
+guid: 327dc5c218e2558479e11db26a172f8d
+ModelImporter:
+  serializedVersion: 19300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: baseCurve2
+  - first:
+      1: 100002
+    second: baseCurve4
+  - first:
+      1: 100004
+    second: baseCurve6
+  - first:
+      1: 100006
+    second: cow
+  - first:
+      1: 100008
+    second: //RootNode
+  - first:
+      1: 100010
+    second: follicle1
+  - first:
+      1: 100012
+    second: follicle2
+  - first:
+      1: 100014
+    second: follicle3
+  - first:
+      1: 100016
+    second: joint1
+  - first:
+      1: 100018
+    second: joint10
+  - first:
+      1: 100020
+    second: joint11
+  - first:
+      1: 100022
+    second: joint12
+  - first:
+      1: 100024
+    second: joint13
+  - first:
+      1: 100026
+    second: joint14
+  - first:
+      1: 100028
+    second: joint15
+  - first:
+      1: 100030
+    second: joint16
+  - first:
+      1: 100032
+    second: joint17
+  - first:
+      1: 100034
+    second: joint18
+  - first:
+      1: 100036
+    second: joint19
+  - first:
+      1: 100038
+    second: joint2
+  - first:
+      1: 100040
+    second: joint20
+  - first:
+      1: 100042
+    second: joint21
+  - first:
+      1: 100044
+    second: joint22
+  - first:
+      1: 100046
+    second: joint23
+  - first:
+      1: 100048
+    second: joint24
+  - first:
+      1: 100050
+    second: joint25
+  - first:
+      1: 100052
+    second: joint26
+  - first:
+      1: 100054
+    second: joint27
+  - first:
+      1: 100056
+    second: joint28
+  - first:
+      1: 100058
+    second: joint29
+  - first:
+      1: 100060
+    second: joint3
+  - first:
+      1: 100062
+    second: joint30
+  - first:
+      1: 100064
+    second: joint31
+  - first:
+      1: 100066
+    second: joint32
+  - first:
+      1: 100068
+    second: joint33
+  - first:
+      1: 100070
+    second: joint34
+  - first:
+      1: 100072
+    second: joint35
+  - first:
+      1: 100074
+    second: joint36
+  - first:
+      1: 100076
+    second: joint37
+  - first:
+      1: 100078
+    second: joint38
+  - first:
+      1: 100080
+    second: joint39
+  - first:
+      1: 100082
+    second: joint4
+  - first:
+      1: 100084
+    second: joint40
+  - first:
+      1: 100086
+    second: joint41
+  - first:
+      1: 100088
+    second: joint42
+  - first:
+      1: 100090
+    second: joint43
+  - first:
+      1: 100092
+    second: joint44
+  - first:
+      1: 100094
+    second: joint45
+  - first:
+      1: 100096
+    second: joint46
+  - first:
+      1: 100098
+    second: joint47
+  - first:
+      1: 100100
+    second: joint48
+  - first:
+      1: 100102
+    second: joint49
+  - first:
+      1: 100104
+    second: joint5
+  - first:
+      1: 100106
+    second: joint50
+  - first:
+      1: 100108
+    second: joint51
+  - first:
+      1: 100110
+    second: joint52
+  - first:
+      1: 100112
+    second: joint53
+  - first:
+      1: 100114
+    second: joint54
+  - first:
+      1: 100116
+    second: joint55
+  - first:
+      1: 100118
+    second: joint56
+  - first:
+      1: 100120
+    second: joint57
+  - first:
+      1: 100122
+    second: joint58
+  - first:
+      1: 100124
+    second: joint6
+  - first:
+      1: 100126
+    second: joint7
+  - first:
+      1: 100128
+    second: joint8
+  - first:
+      1: 100130
+    second: joint9
+  - first:
+      4: 400000
+    second: baseCurve2
+  - first:
+      4: 400002
+    second: baseCurve4
+  - first:
+      4: 400004
+    second: baseCurve6
+  - first:
+      4: 400006
+    second: cow
+  - first:
+      4: 400008
+    second: //RootNode
+  - first:
+      4: 400010
+    second: follicle1
+  - first:
+      4: 400012
+    second: follicle2
+  - first:
+      4: 400014
+    second: follicle3
+  - first:
+      4: 400016
+    second: joint1
+  - first:
+      4: 400018
+    second: joint10
+  - first:
+      4: 400020
+    second: joint11
+  - first:
+      4: 400022
+    second: joint12
+  - first:
+      4: 400024
+    second: joint13
+  - first:
+      4: 400026
+    second: joint14
+  - first:
+      4: 400028
+    second: joint15
+  - first:
+      4: 400030
+    second: joint16
+  - first:
+      4: 400032
+    second: joint17
+  - first:
+      4: 400034
+    second: joint18
+  - first:
+      4: 400036
+    second: joint19
+  - first:
+      4: 400038
+    second: joint2
+  - first:
+      4: 400040
+    second: joint20
+  - first:
+      4: 400042
+    second: joint21
+  - first:
+      4: 400044
+    second: joint22
+  - first:
+      4: 400046
+    second: joint23
+  - first:
+      4: 400048
+    second: joint24
+  - first:
+      4: 400050
+    second: joint25
+  - first:
+      4: 400052
+    second: joint26
+  - first:
+      4: 400054
+    second: joint27
+  - first:
+      4: 400056
+    second: joint28
+  - first:
+      4: 400058
+    second: joint29
+  - first:
+      4: 400060
+    second: joint3
+  - first:
+      4: 400062
+    second: joint30
+  - first:
+      4: 400064
+    second: joint31
+  - first:
+      4: 400066
+    second: joint32
+  - first:
+      4: 400068
+    second: joint33
+  - first:
+      4: 400070
+    second: joint34
+  - first:
+      4: 400072
+    second: joint35
+  - first:
+      4: 400074
+    second: joint36
+  - first:
+      4: 400076
+    second: joint37
+  - first:
+      4: 400078
+    second: joint38
+  - first:
+      4: 400080
+    second: joint39
+  - first:
+      4: 400082
+    second: joint4
+  - first:
+      4: 400084
+    second: joint40
+  - first:
+      4: 400086
+    second: joint41
+  - first:
+      4: 400088
+    second: joint42
+  - first:
+      4: 400090
+    second: joint43
+  - first:
+      4: 400092
+    second: joint44
+  - first:
+      4: 400094
+    second: joint45
+  - first:
+      4: 400096
+    second: joint46
+  - first:
+      4: 400098
+    second: joint47
+  - first:
+      4: 400100
+    second: joint48
+  - first:
+      4: 400102
+    second: joint49
+  - first:
+      4: 400104
+    second: joint5
+  - first:
+      4: 400106
+    second: joint50
+  - first:
+      4: 400108
+    second: joint51
+  - first:
+      4: 400110
+    second: joint52
+  - first:
+      4: 400112
+    second: joint53
+  - first:
+      4: 400114
+    second: joint54
+  - first:
+      4: 400116
+    second: joint55
+  - first:
+      4: 400118
+    second: joint56
+  - first:
+      4: 400120
+    second: joint57
+  - first:
+      4: 400122
+    second: joint58
+  - first:
+      4: 400124
+    second: joint6
+  - first:
+      4: 400126
+    second: joint7
+  - first:
+      4: 400128
+    second: joint8
+  - first:
+      4: 400130
+    second: joint9
+  - first:
+      43: 4300000
+    second: cow
+  - first:
+      74: 7400000
+    second: Cow_Walk
+  - first:
+      74: 7400002
+    second: Cow_Idle
+  - first:
+      74: 7400004
+    second: Cow_Eating
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: cow
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Cow_Walk
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 1
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: cow
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/follicle1
+        weight: 1
+      - path: joint1/follicle1/baseCurve2
+        weight: 1
+      - path: joint1/follicle2
+        weight: 1
+      - path: joint1/follicle2/baseCurve4
+        weight: 1
+      - path: joint1/joint2
+        weight: 1
+      - path: joint1/joint2/joint3
+        weight: 1
+      - path: joint1/joint2/joint3/joint4
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint30
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint30/joint31
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint30/joint31/joint32
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint33
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint33/joint34
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint33/joint34/joint35
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7/joint8
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7/joint8/joint9
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7/joint8/joint9/joint10
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7/joint8/joint9/joint10/joint11
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7/joint8/joint9/joint10/joint11/joint12
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7/joint8/joint9/joint10/joint11/joint12/joint13
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36/joint37
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36/joint37/joint38
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36/joint37/joint38/joint39
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36/joint37/joint38/joint39/joint40
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36/joint37/joint38/joint39/joint40/joint41
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36/joint37/joint38/joint39/joint40/joint41/joint42
+        weight: 1
+      - path: joint1/joint14
+        weight: 1
+      - path: joint1/joint14/joint15
+        weight: 1
+      - path: joint1/joint14/joint15/joint16
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/follicle3
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/follicle3/baseCurve6
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/joint18
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/joint18/joint19
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/joint18/joint19/joint20
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/joint18/joint19/joint20/joint21
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/joint18/joint19/joint20/joint21/joint22
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/joint18/joint19/joint20/joint21/joint22/joint23
+        weight: 1
+      - path: joint1/joint14/joint24
+        weight: 1
+      - path: joint1/joint14/joint24/joint25
+        weight: 1
+      - path: joint1/joint14/joint24/joint25/joint26
+        weight: 1
+      - path: joint1/joint14/joint24/joint25/joint26/joint27
+        weight: 1
+      - path: joint1/joint14/joint24/joint25/joint26/joint27/joint28
+        weight: 1
+      - path: joint1/joint14/joint24/joint25/joint26/joint27/joint28/joint29
+        weight: 1
+      - path: joint1/joint14/joint43
+        weight: 1
+      - path: joint1/joint14/joint43/joint44
+        weight: 1
+      - path: joint1/joint14/joint43/joint44/joint45
+        weight: 1
+      - path: joint1/joint14/joint43/joint44/joint45/joint46
+        weight: 1
+      - path: joint1/joint14/joint43/joint44/joint45/joint46/joint47
+        weight: 1
+      - path: joint1/joint14/joint43/joint44/joint45/joint46/joint47/joint48
+        weight: 1
+      - path: joint1/joint58
+        weight: 1
+      - path: joint1/joint58/joint49
+        weight: 1
+      - path: joint1/joint58/joint49/joint50
+        weight: 1
+      - path: joint1/joint58/joint49/joint50/joint51
+        weight: 1
+      - path: joint1/joint58/joint49/joint52
+        weight: 1
+      - path: joint1/joint58/joint49/joint52/joint53
+        weight: 1
+      - path: joint1/joint58/joint49/joint54
+        weight: 1
+      - path: joint1/joint58/joint49/joint54/joint55
+        weight: 1
+      - path: joint1/joint58/joint49/joint56
+        weight: 1
+      - path: joint1/joint58/joint49/joint56/joint57
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Cow_Idle
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 42
+      lastFrame: 105
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: cow
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/follicle1
+        weight: 1
+      - path: joint1/follicle1/baseCurve2
+        weight: 1
+      - path: joint1/follicle2
+        weight: 1
+      - path: joint1/follicle2/baseCurve4
+        weight: 1
+      - path: joint1/joint2
+        weight: 1
+      - path: joint1/joint2/joint3
+        weight: 1
+      - path: joint1/joint2/joint3/joint4
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint30
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint30/joint31
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint30/joint31/joint32
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint33
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint33/joint34
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint33/joint34/joint35
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7/joint8
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7/joint8/joint9
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7/joint8/joint9/joint10
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7/joint8/joint9/joint10/joint11
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7/joint8/joint9/joint10/joint11/joint12
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7/joint8/joint9/joint10/joint11/joint12/joint13
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36/joint37
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36/joint37/joint38
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36/joint37/joint38/joint39
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36/joint37/joint38/joint39/joint40
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36/joint37/joint38/joint39/joint40/joint41
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36/joint37/joint38/joint39/joint40/joint41/joint42
+        weight: 1
+      - path: joint1/joint14
+        weight: 1
+      - path: joint1/joint14/joint15
+        weight: 1
+      - path: joint1/joint14/joint15/joint16
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/follicle3
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/follicle3/baseCurve6
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/joint18
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/joint18/joint19
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/joint18/joint19/joint20
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/joint18/joint19/joint20/joint21
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/joint18/joint19/joint20/joint21/joint22
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/joint18/joint19/joint20/joint21/joint22/joint23
+        weight: 1
+      - path: joint1/joint14/joint24
+        weight: 1
+      - path: joint1/joint14/joint24/joint25
+        weight: 1
+      - path: joint1/joint14/joint24/joint25/joint26
+        weight: 1
+      - path: joint1/joint14/joint24/joint25/joint26/joint27
+        weight: 1
+      - path: joint1/joint14/joint24/joint25/joint26/joint27/joint28
+        weight: 1
+      - path: joint1/joint14/joint24/joint25/joint26/joint27/joint28/joint29
+        weight: 1
+      - path: joint1/joint14/joint43
+        weight: 1
+      - path: joint1/joint14/joint43/joint44
+        weight: 1
+      - path: joint1/joint14/joint43/joint44/joint45
+        weight: 1
+      - path: joint1/joint14/joint43/joint44/joint45/joint46
+        weight: 1
+      - path: joint1/joint14/joint43/joint44/joint45/joint46/joint47
+        weight: 1
+      - path: joint1/joint14/joint43/joint44/joint45/joint46/joint47/joint48
+        weight: 1
+      - path: joint1/joint58
+        weight: 1
+      - path: joint1/joint58/joint49
+        weight: 1
+      - path: joint1/joint58/joint49/joint50
+        weight: 1
+      - path: joint1/joint58/joint49/joint50/joint51
+        weight: 1
+      - path: joint1/joint58/joint49/joint52
+        weight: 1
+      - path: joint1/joint58/joint49/joint52/joint53
+        weight: 1
+      - path: joint1/joint58/joint49/joint54
+        weight: 1
+      - path: joint1/joint58/joint49/joint54/joint55
+        weight: 1
+      - path: joint1/joint58/joint49/joint56
+        weight: 1
+      - path: joint1/joint58/joint49/joint56/joint57
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Cow_Eating
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 107
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: cow
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/follicle1
+        weight: 1
+      - path: joint1/follicle1/baseCurve2
+        weight: 1
+      - path: joint1/follicle2
+        weight: 1
+      - path: joint1/follicle2/baseCurve4
+        weight: 1
+      - path: joint1/joint2
+        weight: 1
+      - path: joint1/joint2/joint3
+        weight: 1
+      - path: joint1/joint2/joint3/joint4
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint30
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint30/joint31
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint30/joint31/joint32
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint33
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint33/joint34
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint33/joint34/joint35
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7/joint8
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7/joint8/joint9
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7/joint8/joint9/joint10
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7/joint8/joint9/joint10/joint11
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7/joint8/joint9/joint10/joint11/joint12
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint7/joint8/joint9/joint10/joint11/joint12/joint13
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36/joint37
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36/joint37/joint38
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36/joint37/joint38/joint39
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36/joint37/joint38/joint39/joint40
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36/joint37/joint38/joint39/joint40/joint41
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint36/joint37/joint38/joint39/joint40/joint41/joint42
+        weight: 1
+      - path: joint1/joint14
+        weight: 1
+      - path: joint1/joint14/joint15
+        weight: 1
+      - path: joint1/joint14/joint15/joint16
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/follicle3
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/follicle3/baseCurve6
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/joint18
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/joint18/joint19
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/joint18/joint19/joint20
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/joint18/joint19/joint20/joint21
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/joint18/joint19/joint20/joint21/joint22
+        weight: 1
+      - path: joint1/joint14/joint15/joint16/joint17/joint18/joint19/joint20/joint21/joint22/joint23
+        weight: 1
+      - path: joint1/joint14/joint24
+        weight: 1
+      - path: joint1/joint14/joint24/joint25
+        weight: 1
+      - path: joint1/joint14/joint24/joint25/joint26
+        weight: 1
+      - path: joint1/joint14/joint24/joint25/joint26/joint27
+        weight: 1
+      - path: joint1/joint14/joint24/joint25/joint26/joint27/joint28
+        weight: 1
+      - path: joint1/joint14/joint24/joint25/joint26/joint27/joint28/joint29
+        weight: 1
+      - path: joint1/joint14/joint43
+        weight: 1
+      - path: joint1/joint14/joint43/joint44
+        weight: 1
+      - path: joint1/joint14/joint43/joint44/joint45
+        weight: 1
+      - path: joint1/joint14/joint43/joint44/joint45/joint46
+        weight: 1
+      - path: joint1/joint14/joint43/joint44/joint45/joint46/joint47
+        weight: 1
+      - path: joint1/joint14/joint43/joint44/joint45/joint46/joint47/joint48
+        weight: 1
+      - path: joint1/joint58
+        weight: 1
+      - path: joint1/joint58/joint49
+        weight: 1
+      - path: joint1/joint58/joint49/joint50
+        weight: 1
+      - path: joint1/joint58/joint49/joint50/joint51
+        weight: 1
+      - path: joint1/joint58/joint49/joint52
+        weight: 1
+      - path: joint1/joint58/joint49/joint52/joint53
+        weight: 1
+      - path: joint1/joint58/joint49/joint54
+        weight: 1
+      - path: joint1/joint58/joint49/joint54/joint55
+        weight: 1
+      - path: joint1/joint58/joint49/joint56
+        weight: 1
+      - path: joint1/joint58/joint49/joint56/joint57
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 0
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

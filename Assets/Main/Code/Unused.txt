@@ -1,0 +1,83 @@
+﻿private void CheckForClosestKin()
+{
+    Debug.Log("CheckForClosestKin!");
+
+    Vector3 position = myTransform.position;
+    Transform[] allBirds = GameManager.Birds;
+    Transform closestBird = null;
+    float smallestDistance = float.MaxValue;
+    for (int i = 0; i < allBirds.Length; i++)
+    {
+        Transform bird = allBirds[i];
+        if (bird == myTransform)
+        {
+            continue;
+        }
+        float distance = Vector3.Distance(position, bird.position);
+        if (distance < smallestDistance)
+        {
+            smallestDistance = distance;
+            closestBird = bird;
+        }
+    }
+
+    closestKin = closestBird;
+
+    Invoke("CheckForClosestKin", 0.15f);
+}
+
+
+    private void Awake()
+    {
+        instance = this;
+
+        List<Transform> birds = new List<Transform>();
+
+        mother = FindObjectOfType<Mother>();
+        birds.Add(mother.transform);
+
+        var babies = FindObjectsOfType<Baby>();
+        for (int i = 0; i < babies.Length; i++)
+        {
+            birds.Add(babies[i].transform);
+        }
+        GameManager.babies = babies;
+        Birds = birds.ToArray();
+    }
+
+
+
+	 private void FixedUpdate()
+    {
+        float deltaTime = Time.fixedDeltaTime;
+        if (closestKin != null)
+        {
+            if (Vector3.Distance(myTransform.position, closestKin.position) > DESIRED_DISTANCE_FROM_KIN)
+            {
+                GoTowards(closestKin, deltaTime);
+            }
+        }
+    }
+
+
+	/* private void CheckBabiesKinDistance()
+    {
+        for (int i = 0; i < babies.Length; i++)
+        {
+            Baby baby = babies[i];
+            baby.CheckForKinDistance();
+
+        }
+        //Invoke("CheckBabiesKinDistance", 0.1f);
+
+    }*/
+
+	 /* private void GoTowards(Transform t, float deltaTime)
+    {
+        //Debug.Log("GoingTowards!");
+
+        myTransform.LookAt(t);
+        Vector3 Movement = myTransform.forward * FORWARD_SPEED_PER_SECOND * deltaTime;
+        //  rigidbody.AddForce (Movement, ForceMode.VelocityChange);
+        rigidbody.MovePosition(rigidbody.position + Movement);
+    }*/
