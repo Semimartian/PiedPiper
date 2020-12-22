@@ -7,42 +7,37 @@ public class GameManager : MonoBehaviour
     //[SerializeField] private Transform[] birds;
     /*public static Transform[] Birds;*/
     //[SerializeField] private float DetermineBirdOrderInterval = 0.5f;
-    private static Baby[] babies;
-    private static Mother mother;
+    private static Rodent[] rodents;
+    private static Piper piper;
 
     private static GameManager instance;
+    [SerializeField] private ChicksUI chicksUI;
+
     // Start is called before the first frame update
 
     private void Awake()
     {
         instance = this;
 
-        mother = FindObjectOfType<Mother>();
+        piper = FindObjectOfType<Piper>();
 
-        GameManager.babies = FindObjectsOfType<Baby>();
+        GameManager.rodents = FindObjectsOfType<Rodent>();
 
-        MakeAllBabiesFollowMother();
+        MakeAllRodentsFollowPiper();
 
+        UpdateChicksUI();
     }
 
-    void Start()
+    private void MakeAllRodentsFollowPiper()
     {
-        //  DetermineBirdOrder();
-
-        //CheckBabiesKinDistance();
-    }
-
-    private void MakeAllBabiesFollowMother()
-    {
-        Transform motherTransform = mother.transform;
-        for (int i = 0; i < babies.Length; i++)
+        Transform motherTransform = piper.transform;
+        for (int i = 0; i < rodents.Length; i++)
         {
-            Baby baby = babies[i];
-            baby.isAlive = true;
-            baby.closestKin = motherTransform;
+            Rodent rodent = rodents[i];
+            rodent.isAlive = true;
+            rodent.followTarget = motherTransform;
         }
     }
-
     
     private void FixedUpdate()
     {
@@ -55,28 +50,28 @@ public class GameManager : MonoBehaviour
 
     private void ManageBirds(ref float time, ref float deltaTime)
     {
-        bool motherIsMoving = mother.IsMoving;
+        bool piperIsMoving = piper.IsMoving;
 
-        for (int i = 0; i < babies.Length; i++)
+        for (int i = 0; i < rodents.Length; i++)
         {
-            Baby baby = babies[i];
-            if (baby.isAlive)
+            Rodent rodent = rodents[i];
+            if (rodent.isAlive)
             {
-                if (baby.IsFrightened)
+                if (rodent.IsFrightened)
                 {
-                    baby.FrightendRoutine(ref deltaTime);
+                    rodent.FrightendRoutine(ref deltaTime);
                 }
                 else
                 {
-                    if (motherIsMoving)
+                    if (piperIsMoving)
                     {
                         //The split is weird, also weird method names
-                        baby.CheckForKinDistance(ref deltaTime);
-                        baby.GoTowardsKin(ref deltaTime);
+                        rodent.CheckForKinDistance(ref deltaTime);
+                        rodent.GoTowardsKin(ref deltaTime);
                     }
                     else
                     {
-                        baby.IdleRoutine(ref time, ref deltaTime);
+                        rodent.IdleRoutine(ref time, ref deltaTime);
                     }
                 }
             }
@@ -84,51 +79,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    private struct BirdDistanceData
+    public static void OnChickDeath()
     {
-        // public Transform birdTransform;
-        public Baby baby;
-        public float distance;
+       instance.UpdateChicksUI();
     }
 
-    private void DetermineBirdOrder()
+    private void UpdateChicksUI()
     {
-        float DetermineBirdOrderInterval = 1;
-        Debug.LogError("Not Implemented!");
-        int length = babies.Length;
-        BirdDistanceData[] birdDistances = new BirdDistanceData[length];
-        Vector3 motherPosition = mother.transform.position;
-        for (int i = 0; i < length; i++)
+        int relevantChicks = 0;
+        for (int i = 0; i < rodents.Length; i++)
         {
-            birdDistances[i] = new BirdDistanceData
-            { distance = Vector3.Distance(motherPosition, babies[i].transform.position), baby = babies[i] };
-        }
-
-        //Sort:
-        for (int i = 0; i < length - 1; i++)
-        {
-            for (int j = i + 1; j < length; j++)
+            Rodent rodent = rodents[i];
+            if (rodent.isAlive && !rodent.IsFrightened)
             {
-                if (birdDistances[i].distance > birdDistances[j].distance)
-                {
-                    BirdDistanceData swapCopy = birdDistances[i];
-                    birdDistances[i] = birdDistances[j];
-                    birdDistances[j] = swapCopy;
-                }
+                relevantChicks++;
             }
         }
-        // Debug.Log("Bird Order:");
-        birdDistances[0].baby.closestKin = mother.transform;
-        for (int i = 1; i < length; i++)
-        {
-            //  Debug.Log(birdDistances[i].distance);
-            birdDistances[i].baby.closestKin = birdDistances[i - 1].baby.transform;
-        }
 
-        Invoke("DetermineBirdOrder", DetermineBirdOrderInterval);
-
+        chicksUI.UpdateText(relevantChicks);
     }
-
-
 }

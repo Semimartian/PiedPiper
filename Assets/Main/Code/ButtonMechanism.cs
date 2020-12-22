@@ -11,7 +11,7 @@ public class ButtonMechanism : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
-        if (collision.gameObject.GetComponentInParent<Mother>())
+        if (collision.gameObject.GetComponentInParent<Piper>())
         {
             Debug.Log("Button Pressed!");
 
@@ -20,7 +20,7 @@ public class ButtonMechanism : MonoBehaviour
     }
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.GetComponentInParent<Mother>())
+        if (collision.gameObject.GetComponentInParent<Piper>())
         {
             Debug.Log("Button UnPressed!");
             OnButtonUnPressed.Invoke();

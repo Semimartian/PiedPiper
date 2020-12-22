@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Suckable : MonoBehaviour
+public interface ISuckable 
 {
-    public Rigidbody rigidbody;
-
+    Rigidbody GetRigidBody();
+    void GetSucked();
+    Transform GetTransform();
 }

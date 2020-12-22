@@ -21,10 +21,10 @@ public class Frightener : MonoBehaviour
         int numberOfCollidersInRange =  Physics.OverlapSphereNonAlloc(centre, rangeSphere.radius, collidersInRange);
         for (int i = 0; i < numberOfCollidersInRange; i++)
         {
-            Baby baby = collidersInRange[i].gameObject.GetComponentInParent<Baby>();
-            if (baby!= null)
+            Rodent rodent = collidersInRange[i].gameObject.GetComponentInParent<Rodent>();
+            if (rodent != null)
             {
-                baby.BecomeFrightened(ref centre);
+                rodent.BecomeFrightened(ref centre);
             }
         }
 
