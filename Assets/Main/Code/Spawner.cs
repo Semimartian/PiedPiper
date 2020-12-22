@@ -11,17 +11,10 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject puffPreFab;
     [SerializeField] private GameObject featherStreamPreFab;
     
-
     private void Awake()
     {
         instance = this;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
 
     public GameObject SpawnDrumStick()
     {

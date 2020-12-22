@@ -25,6 +25,8 @@ public class Piper : MonoBehaviour
     private float musicalStamina = 1;
     private bool isPlaying = true;
     [SerializeField] private MusicalStaminaUI musicalStaminaUI;
+    [SerializeField] private ParticleSystem noteParticles;
+
     public static Piper instance;
 
     void Start()
@@ -69,11 +71,18 @@ public class Piper : MonoBehaviour
         musicalStamina -= musicalStaminaReductionPerSecond * deltaTime;
         if (musicalStamina <= 0)
         {
-            isPlaying = false;
-            ToggleWalking(false);
-            Debug.Log("I shall play no longer!");
-            musicalStamina = 0;
+            StopPlaying();
         }
+    }
+    private void StopPlaying()
+    {
+        Debug.Log("I shall play no longer!");
+
+        isPlaying = false;
+        ToggleWalking(false);
+        musicalStamina = 0;
+
+        noteParticles.Stop();
     }
 
     private void FixedUpdate()
