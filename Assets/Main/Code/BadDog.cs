@@ -22,7 +22,7 @@ public class BadDog : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 mothersPosition = Mother.instance.myTransform.position;
+        Vector3 mothersPosition = Piper.instance.myTransform.position;
         if (!isBarking)
         {
             if (Vector3.Distance(transform.position, mothersPosition) < rangeSphere.radius)

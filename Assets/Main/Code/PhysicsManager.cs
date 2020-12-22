@@ -5,13 +5,22 @@ using UnityEngine;
 public class PhysicsManager : MonoBehaviour
 {
     private Sucker[] suckers;
-    private Suckable[] suckables;
+    private ISuckable[] suckables;
     private float boundsExpansion = 3f;
 
     void Start()
     {
-
-        suckables = FindObjectsOfType<Suckable>();
+        MonoBehaviour[] monoBehaviours = FindObjectsOfType<MonoBehaviour>();
+        List<ISuckable> suckablesList = new List<ISuckable>();
+        for (int i = 0; i < monoBehaviours.Length; i++)
+        {
+            MonoBehaviour mono = monoBehaviours[i];
+            if (monoBehaviours[i] is ISuckable)
+            {
+                suckablesList.Add((ISuckable)mono);
+            }
+        }
+        suckables = suckablesList.ToArray();
         suckers = FindObjectsOfType<Sucker>();
         for (int i = 0; i < suckers.Length; i++)
         {
@@ -45,10 +54,10 @@ public class PhysicsManager : MonoBehaviour
             // Vector3 magnetPosition = magnets[j].attrractivePoint.position;
             for (int j = 0; j < suckables.Length; j++)
             {
-                Suckable suckable = suckables[j];
+                ISuckable suckable = suckables[j];
                 //if (!metalObject.IsAttachedTo(magnets[j]))
                 {
-                    Transform suckableTransform = suckable.transform;
+                    Transform suckableTransform = suckable.GetTransform();
                     Vector3 suckablePosition = suckableTransform.position;
                     if (bounds.Contains(suckablePosition))
                     {
@@ -59,7 +68,7 @@ public class PhysicsManager : MonoBehaviour
                             // Debug.Log("distanceFromMagnet" + distanceFromMagnet);
                             float attractionSpeed =
                                (Mathf.Abs(distanceFromSucker - attractionDistance) / attractionDistance) * attraction.force;
-                            suckable.rigidbody.AddForce
+                            suckable.GetRigidBody().AddForce
                                ((attractionPoint - suckablePosition).normalized//TODO: Check if this really is the direction
                                * (attractionSpeed /** deltaTime*/), ForceMode.Force);
                             // Debug.Log("Sucking");
