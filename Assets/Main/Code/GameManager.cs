@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
 
     public static void OnChickDeath()
     {
+        Debug.LogWarning("This method should be updated.");
        instance.UpdateChicksUI();
     }
 

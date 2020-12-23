@@ -10,7 +10,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject flamePreFab;
     [SerializeField] private GameObject puffPreFab;
     [SerializeField] private GameObject featherStreamPreFab;
-    
+    [SerializeField] private Rigidbody triggeredMouseTrapPreFab;
+
     private void Awake()
     {
         instance = this;
@@ -34,5 +35,11 @@ public class Spawner : MonoBehaviour
     public GameObject SpawnFeatherStream()
     {
         return Instantiate(featherStreamPreFab);
+    }
+
+    public Rigidbody SpawnTriggeredMouseTrap()
+    {
+        return Instantiate(triggeredMouseTrapPreFab);
+
     }
 }

@@ -201,6 +201,17 @@ public class Rodent : MonoBehaviour, ISuckable
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        MouseTrap mouseTrap = other.GetComponentInParent<MouseTrap>();
+        if(mouseTrap != null)
+        {
+            mouseTrap.Trigger();
+            Die();
+            Destroy(gameObject);
+        }
+    }
+
     private void Burn()
     {
         if (isBurning)
@@ -235,10 +246,7 @@ public class Rodent : MonoBehaviour, ISuckable
         drumStickTransform.rotation = myTransform.rotation;
         drumStickTransform.position = myPosition;
         drumStickTransform.SetParent(myTransform);
-
     }
-
-
 
     private void DeathCry()
     {
@@ -257,7 +265,6 @@ public class Rodent : MonoBehaviour, ISuckable
     {
         isAlive = false;
         GameManager.OnChickDeath();
-
     }
     #region Suck
     public Transform GetTransform()
