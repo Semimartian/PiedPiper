@@ -185,12 +185,31 @@ public class Rodent : MonoBehaviour, ISuckable
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (isAlive && !isBurning && collision.gameObject.tag == "Hot")
+        if (isAlive)
         {
-            isBurning = true;
-            float delay = Random.Range(0, 1f);
-            Invoke("Burn", delay);
+            string colliderTag = collision.gameObject.tag;
+            if (colliderTag == "Squasher")
+            {
+                Squash();
+            }
+            else if(colliderTag == "Hot" && !isBurning)
+            {
+                isBurning = true;
+                float delay = Random.Range(0, 1f);
+                Invoke("Burn", delay);
+            }
+
         }
+    }
+
+    private void Squash()
+    {
+        Die();
+
+        EffectsManager.PlayEffectAt(EffectNames.Blood, myTransform.position);
+        animator.SetTrigger("Squash");
+        collider.SetActive(false);
+        rigidbody.isKinematic = true;
     }
 
     private void OnCollisionExit(Collision collision)
@@ -208,7 +227,10 @@ public class Rodent : MonoBehaviour, ISuckable
         {
             mouseTrap.Trigger();
             Die();
-            Destroy(gameObject);
+            graphics.SetActive(false);
+            collider.SetActive(false);
+            rigidbody.isKinematic = true;
+            //Destroy(gameObject);
         }
     }
 
@@ -252,6 +274,7 @@ public class Rodent : MonoBehaviour, ISuckable
     {
         SoundManager.PlayOneShotSoundAt(SoundNames.ChickDeath, myTransform.position);
     }
+
     private void Tweet()
     {
         if (isAlive)

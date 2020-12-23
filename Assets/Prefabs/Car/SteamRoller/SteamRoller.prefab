@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 104833957948239343}
   - component: {fileID: 3348571008450177731}
   - component: {fileID: 7176256093418151595}
+  - component: {fileID: 7246188642183355838}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -162,6 +163,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &7246188642183355838
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830600863853927099}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2534964839176971238, guid: 75f1d0ea26d26954fbe10d7ff7f45766, type: 3}
 --- !u!1 &2941808544122604223
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +186,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2200077207143315628}
-  - component: {fileID: 8071080902788208086}
   m_Layer: 0
   m_Name: SteamRoller
   m_TagString: Untagged
@@ -195,22 +209,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &8071080902788208086
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2941808544122604223}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: db9ad38155bbe5641aa7c9b5105bfd52, type: 2}
-  m_Controller: {fileID: 9100000, guid: b057aa75f6745e24e8858aa11a8a7945, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
