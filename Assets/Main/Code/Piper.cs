@@ -32,8 +32,8 @@ public class Piper : MonoBehaviour
     void Start()
     {
         instance = this;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible =false;
+       // Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible =false;
 
         myTransform = transform;
         rigidbody = GetComponent<Rigidbody>();
@@ -85,14 +85,19 @@ public class Piper : MonoBehaviour
         noteParticles.Stop();
     }
 
+
+    private float previousMouseX;
     private void FixedUpdate()
     {
         float deltaTime = Time.fixedDeltaTime;
 
+        float mouseX = Input.mousePosition.x;
+
         if (isWalking)
         {
 
-            float mouseMovement = Input.GetAxisRaw("Mouse X");
+            float mouseMovement = //Input.GetAxisRaw("Mouse X");
+                mouseX - previousMouseX;
 
             Quaternion currentRotationQurternion = rigidbody.rotation;
             if (mouseMovement != 0)
@@ -128,17 +133,20 @@ public class Piper : MonoBehaviour
             //  rigidbody.AddForce (Movement, ForceMode.VelocityChange);
             rigidbody.MovePosition(rigidbody.position + Movement);
         }
+
+        previousMouseX = mouseX;
+
     }
 
 
-  /*  private void Jump()
-    {
-        rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        animator.SetTrigger("Jump");
-       // animator.SetBool("InAir", true);
-        SoundManager.PlayOneShotSoundAt(SoundNames.GooseJump, myTransform.position);
+    /*  private void Jump()
+      {
+          rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+          animator.SetTrigger("Jump");
+         // animator.SetBool("InAir", true);
+          SoundManager.PlayOneShotSoundAt(SoundNames.GooseJump, myTransform.position);
 
-    }*/
+      }*/
 
     /*private void Land()
     {

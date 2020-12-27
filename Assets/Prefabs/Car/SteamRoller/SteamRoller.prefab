@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3560674245173894585}
   - component: {fileID: 3359809859854512898}
   - component: {fileID: 1019646584333437294}
+  - component: {fileID: 3450169038748896927}
   m_Layer: 0
   m_Name: SteamRoller
   m_TagString: Untagged
@@ -83,6 +84,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3450169038748896927
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745686172654858529}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.03413204, y: 0.053955555, z: 0.058419764}
+  m_Center: {x: -0.00016462523, y: 0.026963376, z: 0.0055147754}
 --- !u!1 &1830600863853927099
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,8 +110,8 @@ GameObject:
   - component: {fileID: 7176256093418151595}
   - component: {fileID: 7246188642183355838}
   m_Layer: 0
-  m_Name: Cylinder
-  m_TagString: Untagged
+  m_Name: Squasher
+  m_TagString: Squasher
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
