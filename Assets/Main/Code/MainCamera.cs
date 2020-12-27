@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class MainCamera : MonoBehaviour
 {
+
+    public enum CameraStates
+    {
+        FollowingPlayer, Static
+    }
+    private CameraStates state;
     private Transform myTransform;
 
     [SerializeField] private Transform target;
@@ -11,6 +17,7 @@ public class MainCamera : MonoBehaviour
 
     [SerializeField] private Vector3 lerpedMovementOnAllAxes;
     private Transform audioListener;
+
    // [SerializeField] private float lerpedMovementAmount = 0.5f;
     // [SerializeField] private float ZOffsetFromTarget;
 
@@ -18,8 +25,13 @@ public class MainCamera : MonoBehaviour
     {
         myTransform = transform;
         CreateAudioListener();
+        state = CameraStates.FollowingPlayer;
     }
 
+    public void ChangeState(CameraStates newState)
+    {
+        state = newState;
+    }
 
     private void CreateAudioListener()
     {
@@ -32,26 +44,28 @@ public class MainCamera : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float deltaTime = Time.fixedDeltaTime;
 
-        Vector3 currentPosition = myTransform.position;
-        Vector3 targetPosition = target.position + offset;
+        if(state == CameraStates.FollowingPlayer)
+        {
+            float deltaTime = Time.fixedDeltaTime;
 
-        Vector3 lerpT = lerpedMovementOnAllAxes * deltaTime;
-        Vector3 newPosition = new Vector3(
-            Mathf.Lerp(currentPosition.x, targetPosition.x, lerpT.x),
-            Mathf.Lerp(currentPosition.y, targetPosition.y, lerpT.y),
-            Mathf.Lerp(currentPosition.z, targetPosition.z, lerpT.z)
-            );
+            Vector3 currentPosition = myTransform.position;
+            Vector3 targetPosition = target.position + offset;
 
-          //  Vector3.Lerp(myTransform.position, targetPosition, lerpedMovementAmount * deltaTime);
-        myTransform.position = newPosition;
+            Vector3 lerpT = lerpedMovementOnAllAxes * deltaTime;
+            Vector3 newPosition = new Vector3(
+                Mathf.Lerp(currentPosition.x, targetPosition.x, lerpT.x),
+                Mathf.Lerp(currentPosition.y, targetPosition.y, lerpT.y),
+                Mathf.Lerp(currentPosition.z, targetPosition.z, lerpT.z)
+                );
 
-        /* Vector3 newPosition = myTransform.position ;
-         newPosition.z = target.position.z + ZOffsetFromTarget;
-         myTransform.position = newPosition;*/
+            //  Vector3.Lerp(myTransform.position, targetPosition, lerpedMovementAmount * deltaTime);
+            myTransform.position = newPosition;
 
+            /* Vector3 newPosition = myTransform.position ;
+             newPosition.z = target.position.z + ZOffsetFromTarget;
+             myTransform.position = newPosition;*/
 
-
+        }
     }
 }

@@ -3,8 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class Piper : MonoBehaviour
 {
+    /*public enum PlayerState
+    {
+        Standing, Marching, Defenceles, Dead
+    }*/
+
     private Rigidbody rigidbody;
     [HideInInspector]public Transform myTransform;
     [Header("Speeds and Forces")]
@@ -24,9 +31,25 @@ public class Piper : MonoBehaviour
     [SerializeField] private float musicalStaminaReductionPerSecond;
     private float musicalStamina = 1;
     private bool isPlaying = true;
+    public bool IsPlaying
+    {
+        get { return isPlaying; }
+    }
+    private bool isAlive = true;
+    public bool IsAlive
+    {
+        get { return isAlive; }
+    }
     [SerializeField] private MusicalStaminaUI musicalStaminaUI;
     [SerializeField] private ParticleSystem noteParticles;
 
+    #region DeathRelated:
+    [SerializeField] private Transform livingBody;
+    [SerializeField] private Rigidbody hat;
+    [SerializeField] private Animator deadBody;
+    #endregion
+
+    private MainCamera mainCamera;
     public static Piper instance;
 
     void Start()
@@ -37,6 +60,8 @@ public class Piper : MonoBehaviour
 
         myTransform = transform;
         rigidbody = GetComponent<Rigidbody>();
+        InitialiseColliders();
+        mainCamera = FindObjectOfType<MainCamera>();
     }
 
     private void Update()
@@ -57,6 +82,32 @@ public class Piper : MonoBehaviour
             UpdateMusicalStamina(ref deltaTime);
             musicalStaminaUI.UpdateUI(musicalStamina);
         }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Die();
+        }   
+    }
+
+    private void Die()
+    {
+        isAlive = false;
+
+        rigidbody.isKinematic = true;
+
+        hat.transform.SetParent(null);
+        hat.isKinematic = false;
+        Collider[] hatColliders = hat.GetComponentsInChildren<Collider>();
+        for (int i = 0; i < hatColliders.Length; i++)
+        {
+            hatColliders[i].enabled = true;
+        }
+
+        livingBody.gameObject.SetActive(false);
+        deadBody.gameObject.SetActive(true);
+        deadBody.SetTrigger("Play");
+
+        mainCamera.ChangeState(MainCamera.CameraStates.Static);
 
     }
 
@@ -79,14 +130,65 @@ public class Piper : MonoBehaviour
         Debug.Log("I shall play no longer!");
 
         isPlaying = false;
+        animator.SetTrigger("Panic");
         ToggleWalking(false);
         musicalStamina = 0;
 
+        SwapColliders();
         noteParticles.Stop();
+
+        rigidbody.isKinematic = true;
+
+
     }
 
 
+    [SerializeField] private Collider gameCollider;
+    [SerializeField] private Transform gameOverCollidersParent;
+
+    private List<Collider> gameOverColliders;
+
+    private void InitialiseColliders()
+    {
+        gameOverColliders = new List<Collider>();
+        GetColliders(gameOverCollidersParent, gameOverColliders);
+        for (int i = 0; i < gameOverColliders.Count; i++)
+        {
+            gameOverColliders[i].enabled = false;
+        }
+    }
+
+    private void GetColliders(Transform obj, List<Collider> colliders)
+    {
+        var objColliders = obj.GetComponents<Collider>();
+        if (objColliders.Length > 0)
+        {
+            colliders.AddRange(objColliders);
+        }
+        int childCount = obj.childCount;
+        if (childCount > 0)
+        {
+            for (int i = 0; i < childCount; i++)
+            {
+                GetColliders(obj.GetChild(i), colliders);
+            }
+        }
+
+    }
+
+    private void SwapColliders()
+    {
+        for (int i = 0; i < gameOverColliders.Count; i++)
+        {
+            gameOverColliders[i].enabled = true;
+        }
+        gameCollider.enabled = false;
+
+        
+    }
+
     private float previousMouseX;
+
     private void FixedUpdate()
     {
         float deltaTime = Time.fixedDeltaTime;
