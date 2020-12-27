@@ -56,6 +56,7 @@ public class PhysicsManager : MonoBehaviour
             {
                 ISuckable suckable = suckables[j];
                 //if (!metalObject.IsAttachedTo(magnets[j]))
+               // if(suckable!= null)//Some suckables might have been destroyed.  
                 {
                     Transform suckableTransform = suckable.GetTransform();
                     Vector3 suckablePosition = suckableTransform.position;

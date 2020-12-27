@@ -185,12 +185,31 @@ public class Rodent : MonoBehaviour, ISuckable
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (isAlive && !isBurning && collision.gameObject.tag == "Hot")
+        if (isAlive)
         {
-            isBurning = true;
-            float delay = Random.Range(0, 1f);
-            Invoke("Burn", delay);
+            string colliderTag = collision.gameObject.tag;
+            if (colliderTag == "Squasher")
+            {
+                Squash();
+            }
+            else if(colliderTag == "Hot" && !isBurning)
+            {
+                isBurning = true;
+                float delay = Random.Range(0, 1f);
+                Invoke("Burn", delay);
+            }
+
         }
+    }
+
+    private void Squash()
+    {
+        Die();
+
+        EffectsManager.PlayEffectAt(EffectNames.Blood, myTransform.position);
+        animator.SetTrigger("Squash");
+        collider.SetActive(false);
+        rigidbody.isKinematic = true;
     }
 
     private void OnCollisionExit(Collision collision)
@@ -198,6 +217,20 @@ public class Rodent : MonoBehaviour, ISuckable
         if (isBurning && collision.gameObject.tag == "Hot")
         {
             isBurning = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        MouseTrap mouseTrap = other.GetComponentInParent<MouseTrap>();
+        if(mouseTrap != null)
+        {
+            mouseTrap.Trigger();
+            Die();
+            graphics.SetActive(false);
+            collider.SetActive(false);
+            rigidbody.isKinematic = true;
+            //Destroy(gameObject);
         }
     }
 
@@ -235,15 +268,13 @@ public class Rodent : MonoBehaviour, ISuckable
         drumStickTransform.rotation = myTransform.rotation;
         drumStickTransform.position = myPosition;
         drumStickTransform.SetParent(myTransform);
-
     }
-
-
 
     private void DeathCry()
     {
         SoundManager.PlayOneShotSoundAt(SoundNames.ChickDeath, myTransform.position);
     }
+
     private void Tweet()
     {
         if (isAlive)
@@ -257,7 +288,6 @@ public class Rodent : MonoBehaviour, ISuckable
     {
         isAlive = false;
         GameManager.OnChickDeath();
-
     }
     #region Suck
     public Transform GetTransform()
