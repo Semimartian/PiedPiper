@@ -1773,7 +1773,7 @@ MonoBehaviour:
   flamePreFab: {fileID: 1681286073628092, guid: 5182a70a0a0123c47a16146b522bbf16,
     type: 3}
   puffPreFab: {fileID: 188088, guid: addab96d06160f34c8e3f3e2c94e30eb, type: 3}
-  featherStreamPreFab: {fileID: 188088, guid: bdd27d154cb230f4e88d6ff7a3346206, type: 3}
+  hairStreamPreFab: {fileID: 188088, guid: 83f6a0a74aedb554c8a6716fb9a25c31, type: 3}
   triggeredMouseTrapPreFab: {fileID: 3833934417373136577, guid: 8932408ed1bda074093ec8774ee2227c,
     type: 3}
 --- !u!1 &5189475127724310570
@@ -3763,13 +3763,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6798311869013344775}
-  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 0.33, y: 3.74, z: -4.87}
+  m_LocalRotation: {x: 0.27563733, y: 0, z: 0, w: 0.96126175}
+  m_LocalPosition: {x: 0, y: 3.74, z: -4.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4637313311618846679}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 32, y: 0, z: 0}
 --- !u!20 &6798311869013344773
 Camera:
   m_ObjectHideFlags: 0
@@ -3795,7 +3795,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 256
-  field of view: 60
+  field of view: 63
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -3826,7 +3826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 6301394384630153545}
-  offset: {x: 0, y: 5.8, z: -6.1}
+  offset: {x: 0, y: 5.25, z: -6.65}
   lerpedMovementOnAllAxes: {x: 0, y: 0.6, z: 4}
 --- !u!114 &6798311869013344768
 MonoBehaviour:
