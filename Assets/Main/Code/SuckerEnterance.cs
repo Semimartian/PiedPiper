@@ -6,31 +6,34 @@ public class SuckerEnterance : MonoBehaviour
 {
     [SerializeField] private Transform exit;
     [SerializeField] private AudioSource cuttingSound;
-    private int chicksInside = 0;
+    private int rodentsInside = 0;
     private float volumeChangePerSecond = 1.8f;
+
+    //[SerializeField] private ParticleSystem hairParticleSystem;
     private void OnTriggerEnter(Collider other)
     {
         ISuckable suckable = other.gameObject.GetComponentInParent<ISuckable>();
         if (suckable != null)
         {
-            chicksInside++;
+            rodentsInside++;
             suckable.GetSucked();
-            Invoke("SpawnFeathers", 1.2f);
+            Invoke("SpawnHairs", 1.2f);
         }
     }
 
-    private void SpawnFeathers()
+    private void SpawnHairs()
     {
-        chicksInside--;
-
-        Transform effect = Spawner.instance.SpawnFeatherStream().transform;
+        rodentsInside--;
+        //hairParticleSystem.Play();
+       Transform effect = Spawner.instance.SpawnHairStream().transform;
         effect.position = exit.position;
+
     }
 
     private void Update()
     {
         float volume = cuttingSound.volume;
-        if (chicksInside <= 0)
+        if (rodentsInside <= 0)
         {
             if (volume > 0)
             {
@@ -53,5 +56,10 @@ public class SuckerEnterance : MonoBehaviour
                 // cuttingSound.Play();
              }*/
         }
+
+        /*if (Input.GetKeyDown(KeyCode.P))
+        {
+            hairParticleSystem.Play();
+        }*/
     }
 }

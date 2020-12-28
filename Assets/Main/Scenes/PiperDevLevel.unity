@@ -17735,6 +17735,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DistortionParticles 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8638084141782913794, guid: fc0cd1232bcedb448b9d773249153eab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8638084141782913807, guid: fc0cd1232bcedb448b9d773249153eab,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26658,6 +26663,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5147852468884226131, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: hairStreamPreFab
+      value: 
+      objectReference: {fileID: 188088, guid: 83f6a0a74aedb554c8a6716fb9a25c31, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8880233ec8884548b6337766aa2eb52, type: 3}
 --- !u!1001 &1590661238
@@ -31950,6 +31960,10 @@ PrefabInstance:
       propertyPath: cuttingSound
       value: 
       objectReference: {fileID: 2102537260}
+    - target: {fileID: 1482866440, guid: 6f821cb93580bd64da426ae110e4c100, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1616354243030737140, guid: 6f821cb93580bd64da426ae110e4c100,
         type: 3}
       propertyPath: m_Name
@@ -32015,6 +32029,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5237030249752709990, guid: 6f821cb93580bd64da426ae110e4c100,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6804304714933886748, guid: 6f821cb93580bd64da426ae110e4c100,
         type: 3}
       propertyPath: m_IsActive
@@ -32029,6 +32048,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638084142797535309, guid: 6f821cb93580bd64da426ae110e4c100,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f821cb93580bd64da426ae110e4c100, type: 3}
