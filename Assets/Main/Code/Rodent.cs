@@ -1,5 +1,4 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,16 +7,16 @@ public class Rodent : MonoBehaviour, ISuckable
     private Rigidbody rigidbody;
     [HideInInspector] public bool isAlive;
     [HideInInspector] public Transform myTransform;
-    [HideInInspector] public Transform followTarget;
+   // [HideInInspector] public Transform followTarget;
     private const float FORWARD_SPEED_PER_SECOND = 2.2f;
 
     private const float ACCELERATION_PER_SECOND = 8f;
     private const float DEACCELERATION_PER_SECOND = 8f;
 
     private float currentSpeed = 0;
-    public const float DESIRED_DISTANCE_FROM_KIN = 1f;
+    // public const float DESIRED_DISTANCE_FROM_KIN = 0;// 1f;
 
-    public const float ACCEPTABLE_DISTANCE_FROM_KIN = 1f;
+   // public const float ACCEPTABLE_DISTANCE_FROM_KIN = 1f;
 
     private bool isFrightened = false;
     bool isBurning = false;
@@ -45,10 +44,10 @@ public class Rodent : MonoBehaviour, ISuckable
     }
 
 
-    public void CheckForKinDistance(ref float deltaTime)
+    public void ModifySpeed(ref float deltaTime, ref Vector3 targetPosition,  float desiredDistance)
     {
         float modifier = deltaTime *
-            ((Vector3.Distance(myTransform.position, followTarget.position) > DESIRED_DISTANCE_FROM_KIN)
+            ((Vector3.Distance(myTransform.position, targetPosition) > desiredDistance)
             ? ACCELERATION_PER_SECOND : -DEACCELERATION_PER_SECOND);
         currentSpeed += modifier;
         currentSpeed = Mathf.Clamp(currentSpeed, 0, FORWARD_SPEED_PER_SECOND);
@@ -56,9 +55,9 @@ public class Rodent : MonoBehaviour, ISuckable
     }
 
 
-    public void GoTowardsKin(ref float deltaTime)
+    public void WalkTowards(ref float deltaTime, ref Vector3 targetPosition, bool disregardY)
     {
-        LookAt(followTarget.position,true);
+        LookAt(targetPosition, disregardY);
         if (currentSpeed > 0)
         {
             WalkForward(ref deltaTime);
@@ -77,6 +76,18 @@ public class Rodent : MonoBehaviour, ISuckable
         //  rigidbody.AddForce (Movement, ForceMode.VelocityChange);
         rigidbody.MovePosition(rigidbody.position + Movement);
         animator.SetBool("IsWalking", true);
+    }
+
+    public void MightJump()
+    {
+        bool jump = Random.Range(0, 256) == 0;
+        if (jump)
+        {
+            //Debug.Log("Jump");
+            float force = Random.Range(0, 3.5f);
+            rigidbody.AddForce(Vector3.up * force, ForceMode.Impulse);
+
+        }
     }
 
     public void BecomeFrightened(ref Vector3 FrighteningOrigin)
@@ -131,14 +142,15 @@ public class Rodent : MonoBehaviour, ISuckable
 
     private IdleRoutineData idleRoutineData;
 
-    public void IdleRoutine(ref float time, ref float deltaTime)
+    public void IdleRoutine(ref float time, ref float deltaTime, ref Vector3 targetPosition, float acceptableDistance)
     {
-        bool isInAcceptableRange = (Vector3.Distance(myTransform.position, followTarget.position) < ACCEPTABLE_DISTANCE_FROM_KIN);
+        bool isInAcceptableRange = 
+            (Vector3.Distance(myTransform.position, targetPosition) < acceptableDistance);
 
         if (!isInAcceptableRange)
         {
            // myTransform.LookAt(followTarget);
-            LookAt(followTarget.position,true);
+            LookAt(targetPosition, true);
 
             idleRoutineData.isMoving = true;
         }
@@ -146,7 +158,7 @@ public class Rodent : MonoBehaviour, ISuckable
         {
             idleRoutineData.nextRotationTime = time + Random.Range(0, 1.5f);
 
-            Vector3 currentEuler = rigidbody.rotation.eulerAngles;
+            Vector3 currentEuler = new Vector3();// rigidbody.rotation.eulerAngles;
             currentEuler.y = Random.Range(0, 360);
 
             rigidbody.rotation = Quaternion.Euler(currentEuler);

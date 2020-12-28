@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     private static GameManager instance;
     [SerializeField] private ChicksUI chicksUI;
+    [SerializeField] private Transform piperHead;
 
     // Start is called before the first frame update
 
@@ -35,7 +37,6 @@ public class GameManager : MonoBehaviour
         {
             Rodent rodent = rodents[i];
             rodent.isAlive = true;
-            rodent.followTarget = motherTransform;
         }
     }
     
@@ -44,14 +45,20 @@ public class GameManager : MonoBehaviour
         float deltaTime = Time.fixedDeltaTime;
         float time = Time.time;
         // CheckBabiesKinDistance();
-        ManageBirds(ref time, ref deltaTime);
+        ManageRodents(ref time, ref deltaTime);
       
     }
 
-    private void ManageBirds(ref float time, ref float deltaTime)
+    private void ManageRodents(ref float time, ref float deltaTime)
     {
-        bool piperIsMoving = piper.IsMoving;
+        //Bad programming ahead:
+        bool piperIsAlive = piper.IsAlive;
+        bool piperIsMoving =  piper.IsMoving;
+        bool piperIsPlaying = piper.IsPlaying;
+        Vector3 piperPosition =// piper.myTransform.position;
+            piperHead.position;
 
+        //Debug.Log("piperIsMoving: " + piperIsMoving);
         for (int i = 0; i < rodents.Length; i++)
         {
             Rodent rodent = rodents[i];
@@ -63,20 +70,44 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    if (piperIsMoving)
+                    if (piperIsAlive)
                     {
-                        //The split is weird, also weird method names
-                        rodent.CheckForKinDistance(ref deltaTime);
-                        rodent.GoTowardsKin(ref deltaTime);
+                        if (!piperIsPlaying)
+                        {
+                            rodent.ModifySpeed(ref deltaTime, ref piperPosition, 0);
+                            rodent.WalkTowards(ref deltaTime, ref piperPosition, false);
+                            if (rodent.myTransform.position.y < piperPosition.y)
+                            {
+                                rodent.MightJump();
+                            }
+                        }
+                        else if(piperIsMoving)
+                        {
+                            //The split is weird, also weird method names
+                            rodent.ModifySpeed(ref deltaTime, ref piperPosition, 1);
+                            rodent.WalkTowards(ref deltaTime, ref piperPosition, true);
+                        }
+                        else
+                        {
+
+                            rodent.IdleRoutine(ref time, ref deltaTime, ref piperPosition, 2.5f);
+                        }
                     }
                     else
                     {
-                        rodent.IdleRoutine(ref time, ref deltaTime);
+                        rodent.IdleRoutine(ref time, ref deltaTime, ref piperPosition, 50);
+
                     }
+
                 }
             }
 
         }
+    }
+
+    internal static void OnPiperDeath()
+    {
+        throw new NotImplementedException();
     }
 
     public static void OnChickDeath()
