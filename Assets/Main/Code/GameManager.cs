@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     private static Piper piper;
 
     private static GameManager instance;
-    [SerializeField] private ChicksUI chicksUI;
+    [SerializeField] private RodentsUI rodentsUI;
     [SerializeField] private Transform piperHead;
 
     // Start is called before the first frame update
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
         MakeAllRodentsFollowPiper();
 
-        UpdateChicksUI();
+        UpdateRodentsUI();
     }
 
     private void MakeAllRodentsFollowPiper()
@@ -72,7 +72,21 @@ public class GameManager : MonoBehaviour
                 {
                     if (piperIsAlive)
                     {
-                        if (!piperIsPlaying)
+                        if (piperIsPlaying)
+                        {
+                            if (piperIsMoving)
+                            {
+                                //The split is weird, also weird method names
+                                rodent.ModifySpeed(ref deltaTime, ref piperPosition, 3);
+                                rodent.WalkTowards(ref deltaTime, ref piperPosition, true);
+                            }
+                            else
+                            {
+
+                                rodent.IdleRoutine(ref time, ref deltaTime, ref piperPosition, 10f);
+                            }
+                        }
+                        else //Piper is NOT playing
                         {
                             rodent.ModifySpeed(ref deltaTime, ref piperPosition, 0);
                             rodent.WalkTowards(ref deltaTime, ref piperPosition, false);
@@ -81,21 +95,11 @@ public class GameManager : MonoBehaviour
                                 rodent.MightJump();
                             }
                         }
-                        else if(piperIsMoving)
-                        {
-                            //The split is weird, also weird method names
-                            rodent.ModifySpeed(ref deltaTime, ref piperPosition, 1);
-                            rodent.WalkTowards(ref deltaTime, ref piperPosition, true);
-                        }
-                        else
-                        {
 
-                            rodent.IdleRoutine(ref time, ref deltaTime, ref piperPosition, 2.5f);
-                        }
                     }
                     else
                     {
-                        rodent.IdleRoutine(ref time, ref deltaTime, ref piperPosition, 50);
+                        rodent.IdleRoutine(ref time, ref deltaTime, ref piperPosition, 1000f);
 
                     }
 
@@ -105,29 +109,34 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    internal static void OnPiperDeath()
+    public static void OnRodentDeath()
     {
-        throw new NotImplementedException();
+        //Debug.LogWarning("This method should be updated.");
+        instance.UpdateRodentsUI();
     }
 
-    public static void OnChickDeath()
+    public static void OnPiperPanic()
     {
-        Debug.LogWarning("This method should be updated.");
-       instance.UpdateChicksUI();
+        instance.HideRodentsUI();
     }
 
-    private void UpdateChicksUI()
+    private void HideRodentsUI()
     {
-        int relevantChicks = 0;
+        rodentsUI.Hide();
+    }
+
+    private void UpdateRodentsUI()
+    {
+        int relevantRodents = 0;
         for (int i = 0; i < rodents.Length; i++)
         {
             Rodent rodent = rodents[i];
             if (rodent.isAlive && !rodent.IsFrightened)
             {
-                relevantChicks++;
+                relevantRodents++;
             }
         }
 
-        chicksUI.UpdateText(relevantChicks);
+        rodentsUI.UpdateText(relevantRodents);
     }
 }
