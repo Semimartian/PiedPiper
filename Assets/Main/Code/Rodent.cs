@@ -15,7 +15,6 @@ public class Rodent : MonoBehaviour, ISuckable
 
     private float currentSpeed = 0;
     // public const float DESIRED_DISTANCE_FROM_KIN = 0;// 1f;
-
    // public const float ACCEPTABLE_DISTANCE_FROM_KIN = 1f;
 
     private bool isFrightened = false;
@@ -44,10 +43,10 @@ public class Rodent : MonoBehaviour, ISuckable
     }
 
 
-    public void ModifySpeed(ref float deltaTime, ref Vector3 targetPosition,  float desiredDistance)
+    public void ModifySpeed(ref float deltaTime, ref Vector3 targetPosition,  float desiredSquaredDistance)
     {
         float modifier = deltaTime *
-            ((Vector3.Distance(myTransform.position, targetPosition) > desiredDistance)
+            ((Vector3.SqrMagnitude(myTransform.position - targetPosition) > desiredSquaredDistance)
             ? ACCELERATION_PER_SECOND : -DEACCELERATION_PER_SECOND);
         currentSpeed += modifier;
         currentSpeed = Mathf.Clamp(currentSpeed, 0, FORWARD_SPEED_PER_SECOND);
@@ -98,7 +97,7 @@ public class Rodent : MonoBehaviour, ISuckable
         }
         Debug.Log("FRIGHT");
         isFrightened = true;
-        GameManager.OnChickDeath();
+        GameManager.OnRodentDeath();
 
 
         rigidbody.AddForce(Vector3.up * 0.6f, ForceMode.Impulse);
@@ -142,10 +141,10 @@ public class Rodent : MonoBehaviour, ISuckable
 
     private IdleRoutineData idleRoutineData;
 
-    public void IdleRoutine(ref float time, ref float deltaTime, ref Vector3 targetPosition, float acceptableDistance)
+    public void IdleRoutine(ref float time, ref float deltaTime, ref Vector3 targetPosition, float acceptableSquaredDistance)
     {
         bool isInAcceptableRange = 
-            (Vector3.Distance(myTransform.position, targetPosition) < acceptableDistance);
+            (Vector3.SqrMagnitude(myTransform.position- targetPosition) < acceptableSquaredDistance);
 
         if (!isInAcceptableRange)
         {
@@ -195,6 +194,19 @@ public class Rodent : MonoBehaviour, ISuckable
         rigidbody.rotation = Quaternion.LookRotation(newForward);
     }
 
+
+
+    private void Squash()
+    {
+        Die();
+
+        EffectsManager.PlayEffectAt(EffectNames.Blood, myTransform.position);
+        animator.SetTrigger("Squash");
+
+        collider.SetActive(false);
+        rigidbody.isKinematic = true;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (isAlive)
@@ -204,24 +216,19 @@ public class Rodent : MonoBehaviour, ISuckable
             {
                 Squash();
             }
-            else if(colliderTag == "Hot" && !isBurning)
+            else if (colliderTag == "Hot" && !isBurning)
             {
-                isBurning = true;
-                float delay = Random.Range(0, 1f);
-                Invoke("Burn", delay);
+                bool shouldBurn = (Random.Range(0, 3) == 0);
+                if (shouldBurn)
+                {
+                    isBurning = true;
+                    float delay = Random.Range(0, 1.5f);
+                    Invoke("Burn", delay);
+                }
+
             }
 
         }
-    }
-
-    private void Squash()
-    {
-        Die();
-
-        EffectsManager.PlayEffectAt(EffectNames.Blood, myTransform.position);
-        animator.SetTrigger("Squash");
-        collider.SetActive(false);
-        rigidbody.isKinematic = true;
     }
 
     private void OnCollisionExit(Collision collision)
@@ -299,7 +306,7 @@ public class Rodent : MonoBehaviour, ISuckable
     private void Die()
     {
         isAlive = false;
-        GameManager.OnChickDeath();
+        GameManager.OnRodentDeath();
     }
     #region Suck
     public Transform GetTransform()

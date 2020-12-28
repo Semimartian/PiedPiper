@@ -140,7 +140,7 @@ public class Piper : MonoBehaviour
 
         rigidbody.isKinematic = true;
 
-
+        GameManager.OnPiperPanic();
     }
 
 

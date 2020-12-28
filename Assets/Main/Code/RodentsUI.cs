@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChicksUI : MonoBehaviour
+public class RodentsUI : MonoBehaviour
 {
     [SerializeField] TMPro.TextMeshProUGUI text;
 
@@ -11,4 +11,8 @@ public class ChicksUI : MonoBehaviour
         text.text = numberOfChicks.ToString();
     }
 
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
 }
