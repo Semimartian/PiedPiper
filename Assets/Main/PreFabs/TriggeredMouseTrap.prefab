@@ -575,6 +575,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rat_Sqwash
       objectReference: {fileID: 0}
+    - target: {fileID: 4402184761262884391, guid: de8dad0d0364a394ca2739d3a1046f72,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 803765b08b59a6c449256809502d4197, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de8dad0d0364a394ca2739d3a1046f72, type: 3}
 --- !u!4 &9008301797474565140 stripped
