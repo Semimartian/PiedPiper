@@ -91,6 +91,7 @@ public class Piper : MonoBehaviour
 
     private void Die()
     {
+        Debug.Log("IsSkeleton");
         isAlive = false;
 
         rigidbody.isKinematic = true;
