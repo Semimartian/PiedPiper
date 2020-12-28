@@ -244,6 +244,7 @@ public class Rodent : MonoBehaviour, ISuckable
         MouseTrap mouseTrap = other.GetComponentInParent<MouseTrap>();
         if(mouseTrap != null)
         {
+            EffectsManager.PlayEffectAt(EffectNames.Blood, myTransform.position);
             mouseTrap.Trigger();
             Die();
             graphics.SetActive(false);

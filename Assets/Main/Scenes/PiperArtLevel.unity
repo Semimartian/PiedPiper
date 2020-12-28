@@ -21521,6 +21521,41 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -2.65
       objectReference: {fileID: 0}
+    - target: {fileID: 6798311869013344770, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798311869013344770, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.30070576
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798311869013344770, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.953717
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798311869013344770, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798311869013344771, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: offset.z
+      value: -6.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798311869013344771, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: offset.y
+      value: 6.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798311869013344771, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: lerpedMovementOnAllAxes.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7190743066924619085, guid: a8880233ec8884548b6337766aa2eb52,
         type: 3}
       propertyPath: m_RootOrder
