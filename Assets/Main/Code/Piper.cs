@@ -93,7 +93,12 @@ public class Piper : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D))
         {
             Die();
-        }   
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            StartCoroutine(TurnBack());
+        }
     }
 
     private void UpdateNoteParticles()
@@ -170,6 +175,29 @@ public class Piper : MonoBehaviour
         ToggleWalking(false);
         isDancing = true;
         animator.SetTrigger("Dance");
+        StartCoroutine(TurnBack());
+
+        //mainCamera.ModifyLerpedMovementOnAllAxesBy(Vector3.right * 1f);
+        mainCamera.endTransition();
+    }
+
+    private IEnumerator TurnBack()
+    {
+        Vector3 lookAtPosition = rigidbody.position + Vector3.back;
+        Vector3 newForward = (lookAtPosition - rigidbody.position).normalized;
+
+        Quaternion finalRotation = Quaternion.LookRotation(newForward);
+        float rotationSpeed = 120f;
+        while (true)
+        {
+            float deltaTime = Time.deltaTime;
+            myTransform.rotation =
+                Quaternion.RotateTowards(rigidbody.rotation, finalRotation, rotationSpeed * deltaTime);
+            /* rigidbody.rotation =
+                 Quaternion.RotateTowards(rigidbody.rotation, finalRotation,)*/
+            yield return null;
+        }
+       
     }
 
     [SerializeField] private Collider gameCollider;
