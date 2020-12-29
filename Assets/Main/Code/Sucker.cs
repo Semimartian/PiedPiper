@@ -22,4 +22,10 @@ public class Sucker : MonoBehaviour
             attractionField.attractopnPoint = transform;
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere
+            (attractionField.attractopnPoint.position, attractionField.radius);
+    }
 }
