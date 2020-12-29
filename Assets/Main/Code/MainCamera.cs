@@ -7,7 +7,7 @@ public class MainCamera : MonoBehaviour
 
     public enum CameraStates
     {
-        FollowingPlayer, Static
+        FollowingPlayer, Static, Victory
     }
     private CameraStates state;
     private Transform myTransform;
@@ -65,6 +65,48 @@ public class MainCamera : MonoBehaviour
             /* Vector3 newPosition = myTransform.position ;
              newPosition.z = target.position.z + ZOffsetFromTarget;
              myTransform.position = newPosition;*/
+
+        }
+    }
+
+    public void ModifyLerpedMovementOnAllAxesBy(Vector3 value)
+    {
+        lerpedMovementOnAllAxes += value;
+    }
+
+    [SerializeField] private AnimationCurve transitionCurve;
+    [SerializeField] private Transform endSceneAnchor;
+    public void TransitionTo(Transform anchor)
+    {
+        StartCoroutine(TransitionCoroutine(anchor));
+    }
+
+    public void endTransition()
+    {
+        ChangeState(CameraStates.Victory);
+        StartCoroutine(TransitionCoroutine(endSceneAnchor));
+    }
+
+    private IEnumerator TransitionCoroutine(Transform anchor)
+    {
+        Vector3 originalPosition = myTransform.position;
+        Quaternion originalRotation = myTransform.rotation;
+
+        float time = 0;
+        float endTime = transitionCurve.keys[transitionCurve.length - 1].time;
+
+        while (time < endTime)
+        {
+            //float deltaTime = Time.deltaTime;
+            time += Time.fixedDeltaTime;
+
+            float t = transitionCurve.Evaluate(time);
+            myTransform.position = Vector3.Lerp(originalPosition, anchor.position, t);
+            // Vector3.MoveTowards(transform.position, target.position, speed * deltaTime);
+            myTransform.rotation = Quaternion.Lerp(originalRotation, anchor.rotation, t);
+            //Quaternion.RotateTowards(transform.rotation, target.rotation, rotationSpeed * deltaTime);
+
+            yield return new WaitForFixedUpdate();
 
         }
     }
