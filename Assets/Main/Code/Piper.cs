@@ -44,6 +44,8 @@ public class Piper : MonoBehaviour
     {
         get { return isAlive; }
     }
+    private bool isDancing = false;
+
     [SerializeField] private MusicalStaminaUI musicalStaminaUI;
     [SerializeField] private ParticleSystem noteParticles;
 
@@ -72,7 +74,7 @@ public class Piper : MonoBehaviour
     {
         float deltaTime = Time.deltaTime;
 
-        if (isPlaying)
+        if (isPlaying && !isDancing)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -163,6 +165,12 @@ public class Piper : MonoBehaviour
         GameManager.OnPiperPanic();
     }
 
+    internal void Dance()
+    {
+        ToggleWalking(false);
+        isDancing = true;
+        animator.SetTrigger("Dance");
+    }
 
     [SerializeField] private Collider gameCollider;
     [SerializeField] private Transform gameOverCollidersParent;

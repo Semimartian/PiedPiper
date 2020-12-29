@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
         MakeAllRodentsFollowPiper();
 
-        UpdateRodentsUI();
+        UpdateNumberOfRodents();
     }
 
     private void MakeAllRodentsFollowPiper()
@@ -82,7 +82,6 @@ public class GameManager : MonoBehaviour
                             }
                             else
                             {
-
                                 rodent.IdleRoutine(ref time, ref deltaTime, ref piperPosition, 10f);
                             }
                         }
@@ -111,21 +110,10 @@ public class GameManager : MonoBehaviour
 
     public static void OnRodentDeath()
     {
-        //Debug.LogWarning("This method should be updated.");
-        instance.UpdateRodentsUI();
+        UpdateNumberOfRodents();
     }
 
-    public static void OnPiperPanic()
-    {
-        instance.HideRodentsUI();
-    }
-
-    private void HideRodentsUI()
-    {
-        rodentsUI.Hide();
-    }
-
-    private void UpdateRodentsUI()
+    public static void UpdateNumberOfRodents()
     {
         int relevantRodents = 0;
         for (int i = 0; i < rodents.Length; i++)
@@ -137,6 +125,33 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        rodentsUI.UpdateText(relevantRodents);
+        //Debug.LogWarning("This method should be updated.");
+        instance.UpdateRodentsUI(relevantRodents);
+
+        if (relevantRodents == 0)
+        {
+            instance.OnAllRodetsAreDead();
+        }
+    }
+
+
+    public static void OnPiperPanic()
+    {
+        instance.HideRodentsUI();
+    }
+
+    private void HideRodentsUI()
+    {
+        rodentsUI.Hide();
+    }
+
+    private void UpdateRodentsUI(int numberOfRodents)
+    {
+        rodentsUI.UpdateText(numberOfRodents);
+    }
+
+    private void OnAllRodetsAreDead()
+    {
+        piper.Dance();
     }
 }
