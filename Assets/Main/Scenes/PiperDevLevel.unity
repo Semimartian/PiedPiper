@@ -26663,6 +26663,141 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6301394382992815325, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394382992815325, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394382992815325, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: maxMusicalStaminaColour.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: maxMusicalStaminaColour.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: maxMusicalStaminaColour.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: maxMusicalStaminaColour.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: minMusicalStaminaColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: minMusicalStaminaColour.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: minMusicalStaminaColour.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: minMusicalStaminaColour.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: musicalStaminaColours.atime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: musicalStaminaColours.atime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: musicalStaminaColours.ctime1
+      value: 32768
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: musicalStaminaColours.ctime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: musicalStaminaColours.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: musicalStaminaColours.key0.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: musicalStaminaColours.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: musicalStaminaColours.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: musicalStaminaColours.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: musicalStaminaColours.key2.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: musicalStaminaColours.key2.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: musicalStaminaColours.key2.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: musicalStaminaColours.ctime2
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: musicalStaminaColours.m_NumColorKeys
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: musicalStaminaColours.key1.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: musicalStaminaColours.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8880233ec8884548b6337766aa2eb52, type: 3}
 --- !u!1001 &1590661238

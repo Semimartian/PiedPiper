@@ -7,8 +7,9 @@ public class MusicalStaminaUI : MonoBehaviour
 {
     [SerializeField] private Image fillImage;
 
-    public void UpdateUI(float musicalStamina)
+    public void UpdateUI(float musicalStamina, Color colour)
     {
         fillImage.fillAmount = musicalStamina;
+        fillImage.color = colour;
     }
 }

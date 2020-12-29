@@ -30,6 +30,10 @@ public class Piper : MonoBehaviour
     [Header("Musical Stamina")]
     [SerializeField] private float musicalStaminaReductionPerSecond;
     private float musicalStamina = 1;
+    [SerializeField] private Gradient musicalStaminaColours;
+    /*[SerializeField] private Color maxMusicalStaminaColour;
+    [SerializeField] private Color minMusicalStaminaColour;*/
+    private Color currentMusicalStaminaColour;
     private bool isPlaying = true;
     public bool IsPlaying
     {
@@ -80,13 +84,19 @@ public class Piper : MonoBehaviour
             }
 
             UpdateMusicalStamina(ref deltaTime);
-            musicalStaminaUI.UpdateUI(musicalStamina);
+            UpdateNoteParticles();
+            musicalStaminaUI.UpdateUI(musicalStamina,currentMusicalStaminaColour);
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
             Die();
         }   
+    }
+
+    private void UpdateNoteParticles()
+    {
+        noteParticles.startColor = currentMusicalStaminaColour;
     }
 
     private void Die()
@@ -125,7 +135,17 @@ public class Piper : MonoBehaviour
         {
             StopPlaying();
         }
+
+        DetermineMusicalStaminaColour();
+
     }
+
+    private void DetermineMusicalStaminaColour()
+    {
+        currentMusicalStaminaColour = musicalStaminaColours.Evaluate(musicalStamina);
+          //  Color.Lerp(minMusicalStaminaColour, maxMusicalStaminaColour, musicalStamina);
+    }
+
     private void StopPlaying()
     {
         Debug.Log("I shall play no longer!");
