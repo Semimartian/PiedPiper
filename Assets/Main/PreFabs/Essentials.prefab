@@ -80,7 +80,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2973388963340715549, guid: 96af3b5a31643e44299a2d6925490904, type: 3}
+  - {fileID: 2100000, guid: 9300e97b9ad2cb648a22e41a9b26fd95, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -888,6 +888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillImage: {fileID: 475751056309873658}
+  circleImage: {fileID: 8259962990245307296}
 --- !u!1 &2333014593697199682
 GameObject:
   m_ObjectHideFlags: 0
@@ -2181,7 +2182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.8887596, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3579,7 +3580,7 @@ MonoBehaviour:
   AccelarationPerSecond: 3.2
   deaccelerationPerSecond: 4.2
   animator: {fileID: 74967300746001450}
-  musicalStaminaReductionPerSecond: 0.03
+  musicalStaminaReductionPerSecond: 0.05
   musicalStaminaColours:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}
@@ -3941,7 +3942,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 0, b: 1, a: 0}
+  m_BackGroundColor: {r: 0, g: 0.6879034, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -4691,7 +4692,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MOUSE SHOAH XD
+  m_Text: MOUSE DYSTOPIA XD
 --- !u!1001 &839702972101294787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5089,8 +5090,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -1444460858095362738, guid: c0283d6e584613242bce74766e1eefa8,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 92faf8dbb3508a9498b62102a1cb7f9f, type: 2}
     - target: {fileID: -927199367670048503, guid: 3959113b1271cce409609de93a3ada0b,
         type: 3}
       propertyPath: m_Name
@@ -5111,6 +5111,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8630339596052217510}
     m_Modifications:
+    - target: {fileID: 152487287414754241, guid: 3d01b5788a13e02419c95595d2ddcbee,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: aa07d1004f7020540b53b847d5f8af57, type: 2}
     - target: {fileID: 1882900940647612189, guid: 3d01b5788a13e02419c95595d2ddcbee,
         type: 3}
       propertyPath: m_Name

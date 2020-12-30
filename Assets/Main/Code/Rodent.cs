@@ -39,7 +39,7 @@ public class Rodent : MonoBehaviour, ISuckable
     {
         myTransform = transform;
         rigidbody = GetComponent<Rigidbody>();
-        Invoke("Tweet", Random.Range(0f, 9f));
+      //  Invoke("Tweet", Random.Range(0f, 12f));
     }
 
 
@@ -199,8 +199,10 @@ public class Rodent : MonoBehaviour, ISuckable
     private void Squash()
     {
         Die();
-
-        EffectsManager.PlayEffectAt(EffectNames.Blood, myTransform.position);
+        DeathCry();
+        Vector3 position = myTransform.position;
+        SoundManager.PlayOneShotSoundAt(SoundNames.Squash, position);
+        EffectsManager.PlayEffectAt(EffectNames.Blood, position);
         animator.SetTrigger("Squash");
 
         collider.SetActive(false);
@@ -245,6 +247,7 @@ public class Rodent : MonoBehaviour, ISuckable
         if(mouseTrap != null)
         {
             EffectsManager.PlayEffectAt(EffectNames.Blood, myTransform.position);
+            DeathCry();
             mouseTrap.Trigger();
             Die();
             graphics.SetActive(false);
@@ -262,7 +265,7 @@ public class Rodent : MonoBehaviour, ISuckable
 
             Die();
             rigidbody.constraints = RigidbodyConstraints.None;
-            rigidbody.AddForce(Vector3.up * 1, ForceMode.Impulse);
+            rigidbody.AddForce(Vector3.up * 3f, ForceMode.Impulse);
 
             Vector3 myPosition = this.myTransform.position;
 
@@ -292,15 +295,15 @@ public class Rodent : MonoBehaviour, ISuckable
 
     private void DeathCry()
     {
-        SoundManager.PlayOneShotSoundAt(SoundNames.ChickDeath, myTransform.position);
+        SoundManager.PlayOneShotSoundAt(SoundNames.MouseScream, myTransform.position);
     }
 
     private void Tweet()
     {
         if (isAlive)
         {
-            SoundManager.PlayOneShotSoundAt(SoundNames.ChickTweet, myTransform.position);
-            Invoke("Tweet", Random.Range(4f, 10f));
+            SoundManager.PlayOneShotSoundAt(SoundNames.MouseTweet, myTransform.position);
+            Invoke("Tweet", Random.Range(5f, 26f));
         }
     }
 

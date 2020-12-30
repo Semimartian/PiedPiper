@@ -28,34 +28,36 @@ MonoBehaviour:
     volumeModifier: 0
   - name: 1
     audioClips:
-    - clip: {fileID: 8300000, guid: 4951a9fefc08da6489d87fdfc1559fc3, type: 3}
+    - clip: {fileID: 8300000, guid: b3d372f0eb20e5b4a8522262355a02bb, type: 3}
       volume: 1
-    - clip: {fileID: 8300000, guid: effeaa6c8d9555248bb18672b27c96b0, type: 3}
-      volume: 1
-    - clip: {fileID: 8300000, guid: 70dbe728eea6f2249a572c9c3bb3bc66, type: 3}
-      volume: 1
-    - clip: {fileID: 8300000, guid: 209d36cc48c92c64fb1c460054b8b775, type: 3}
-      volume: 1
-    - clip: {fileID: 8300000, guid: 295d8adb01ee0f842ae644448168985b, type: 3}
+    - clip: {fileID: 8300000, guid: 630b6bacfb71ba04bb5117cd893d553e, type: 3}
       volume: 1
     minPitch: 0.92
     maxPitch: 1.08
     volumeModifier: 0
   - name: 3
     audioClips:
-    - clip: {fileID: 8300000, guid: a406b75612752c24a82105232ba9904b, type: 3}
+    - clip: {fileID: 8300000, guid: 597adad8cfe7f694fa6115255b359b9d, type: 3}
       volume: 1
-    - clip: {fileID: 8300000, guid: 0e149277174ccb3468b11a8693639eda, type: 3}
+    - clip: {fileID: 8300000, guid: 56b43142d449f034d824f3ffa854fd7f, type: 3}
+      volume: 1
+    - clip: {fileID: 8300000, guid: f5e6c208cdf0d6e428c7f6b10e21c3ca, type: 3}
+      volume: 1
+    - clip: {fileID: 8300000, guid: b3b22cb007303884680c19aab363d981, type: 3}
       volume: 1
     minPitch: 0.95
     maxPitch: 1.25
     volumeModifier: 0
   - name: 4
     audioClips:
-    - clip: {fileID: 8300000, guid: 0990114ecd07d8b40b60b101b8bdc235, type: 3}
+    - clip: {fileID: 8300000, guid: 0723a6a46840fb4499cc1d041564c3ef, type: 3}
       volume: 1
-    minPitch: 1
-    maxPitch: 1
+    - clip: {fileID: 8300000, guid: 9b13ebacab4b90441b690b04a4149a1d, type: 3}
+      volume: 1
+    - clip: {fileID: 8300000, guid: 310af4883df93c646a9fa53b0e3c82aa, type: 3}
+      volume: 1
+    minPitch: 0.96
+    maxPitch: 1.04
     volumeModifier: 0
   - name: 2
     audioClips:
@@ -63,6 +65,22 @@ MonoBehaviour:
       volume: 0.08
     minPitch: 0.95
     maxPitch: 1.05
+    volumeModifier: 0
+  - name: 5
+    audioClips:
+    - clip: {fileID: 8300000, guid: ee3d37b76cdc2234bb65841df00a2c39, type: 3}
+      volume: 1
+    - clip: {fileID: 8300000, guid: 539520d58d8203c45860012e191b1b7b, type: 3}
+      volume: 1
+    minPitch: 0.9
+    maxPitch: 1.1
+    volumeModifier: 0
+  - name: 6
+    audioClips:
+    - clip: {fileID: 8300000, guid: 0f89a7f32412a1541853872e6d145cdc, type: 3}
+      volume: 0.48
+    minPitch: 1
+    maxPitch: 1
     volumeModifier: 0
   oneShotSoundPreFab: {fileID: 7439453708357623733, guid: 038f370914515744790a6cacb4d62424,
     type: 3}

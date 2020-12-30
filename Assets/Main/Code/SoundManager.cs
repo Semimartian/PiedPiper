@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum SoundNames : byte
 {
-    Bark, ChickDeath, Sizzle, ChickTweet, GooseJump
+    Bark, MouseScream, Sizzle, MouseTweet, MouseTrap,Squash, MusicalStaminaCollection
 }
 [Serializable]
 public class CorrectedSoundClip
