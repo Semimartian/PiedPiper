@@ -17,6 +17,8 @@ public class Frightener : MonoBehaviour
 
     public void Frighten()
     {
+        Debug.LogWarning("Not Implemented...");
+        /*
         Vector3 centre = transform.position;
         int numberOfCollidersInRange =  Physics.OverlapSphereNonAlloc(centre, rangeSphere.radius, collidersInRange);
         for (int i = 0; i < numberOfCollidersInRange; i++)
@@ -28,7 +30,7 @@ public class Frightener : MonoBehaviour
             }
         }
 
-        Debug.Log( numberOfCollidersInRange + " colliders out of " + collidersInRangeSize);
+        Debug.Log( numberOfCollidersInRange + " colliders out of " + collidersInRangeSize);*/
        // Invoke("Frighten", frightenFrequency);
     }
 }

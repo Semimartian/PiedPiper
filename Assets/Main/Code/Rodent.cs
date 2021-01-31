@@ -33,7 +33,6 @@ public class Rodent : MonoBehaviour, ISuckable
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject graphics;
     [SerializeField] private GameObject collider;
-    [SerializeField] private WorryQuad worryQuad;
 
     private void Awake()
     {
@@ -89,7 +88,7 @@ public class Rodent : MonoBehaviour, ISuckable
         }
     }
 
-    public void BecomeFrightened(ref Vector3 FrighteningOrigin)
+   /* public void BecomeFrightened(ref Vector3 FrighteningOrigin)
     {
         if (IsFrightened)
         {
@@ -110,7 +109,7 @@ public class Rodent : MonoBehaviour, ISuckable
         worryQuad.Appear();
 
         Invoke("RunAway", 0.5f);
-    }
+    }*/
 
     private void RunAway()
     {
@@ -193,8 +192,6 @@ public class Rodent : MonoBehaviour, ISuckable
         }
         rigidbody.rotation = Quaternion.LookRotation(newForward);
     }
-
-
 
     private void Squash()
     {

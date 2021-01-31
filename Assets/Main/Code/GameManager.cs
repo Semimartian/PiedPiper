@@ -64,11 +64,11 @@ public class GameManager : MonoBehaviour
             Rodent rodent = rodents[i];
             if (rodent.isAlive)
             {
-                if (rodent.IsFrightened)
+               /* if (rodent.IsFrightened)
                 {
                     rodent.FrightendRoutine(ref deltaTime);
                 }
-                else
+                else*/
                 {
                     if (piperIsAlive)
                     {
@@ -99,12 +99,9 @@ public class GameManager : MonoBehaviour
                     else
                     {
                         rodent.IdleRoutine(ref time, ref deltaTime, ref piperPosition, 1000f);
-
                     }
-
                 }
             }
-
         }
     }
 
