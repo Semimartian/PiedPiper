@@ -18,6 +18,7 @@ public class MouseTrap : MonoBehaviour
 
         SoundManager.PlayOneShotSoundAt(SoundNames.MouseTrap, transform.position);
         Rigidbody triggeredTrap = Spawner.instance.SpawnTriggeredMouseTrap();
+        triggeredTrap.transform.position = transform.position;
         triggeredTrap.position = transform.position;
         triggeredTrap.rotation = transform.rotation;
         triggeredTrap.isKinematic = false;
