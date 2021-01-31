@@ -214,47 +214,59 @@ public class Rodent : MonoBehaviour, ISuckable
         if (isAlive)
         {
             string colliderTag = collision.gameObject.tag;
-            if (colliderTag == "Squasher")
+            if (colliderTag == "Squasher" && rigidbody.position.y < -0.1f) //TODO: GAY AS HELL
             {
                 Squash();
             }
-            else if (colliderTag == "Hot" && !isBurning)
-            {
-                bool shouldBurn = (Random.Range(0, 3) == 0);
-                if (shouldBurn)
-                {
-                    isBurning = true;
-                    float delay = Random.Range(0, 1.5f);
-                    Invoke("Burn", delay);
-                }
-
-            }
-
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (isBurning && collision.gameObject.tag == "Hot")
+        if (isBurning)// && collision.gameObject.tag == "Hot")
         {
-            isBurning = false;
+            HotSurface hotSurface = other.gameObject.GetComponentInParent<HotSurface>();
+            if(hotSurface != null)
+            {
+                isBurning = false;
+            }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        MouseTrap mouseTrap = other.GetComponentInParent<MouseTrap>();
-        if(mouseTrap != null)
+        if (isAlive)
         {
-            EffectsManager.PlayEffectAt(EffectNames.Blood, myTransform.position);
-            DeathCry();
-            mouseTrap.Trigger();
-            Die();
-            graphics.SetActive(false);
-            collider.SetActive(false);
-            rigidbody.isKinematic = true;
-            //Destroy(gameObject);
+            MouseTrap mouseTrap = other.GetComponentInParent<MouseTrap>();
+            if (mouseTrap != null)
+            {
+                EffectsManager.PlayEffectAt(EffectNames.Blood, myTransform.position);
+                DeathCry();
+                mouseTrap.Trigger();
+                Die();
+                graphics.SetActive(false);
+                collider.SetActive(false);
+                rigidbody.isKinematic = true;
+                //Destroy(gameObject);
+            }
+            else if (/*colliderTag == "Hot" && */!isBurning)
+            {
+
+                HotSurface hotSurface = other.gameObject.GetComponentInParent<HotSurface>();
+                if (hotSurface != null)
+                {
+
+                    bool shouldBurn = (Random.Range(0, hotSurface.burnChance) == 0);
+                    if (shouldBurn)
+                    {
+                        isBurning = true;
+                        float delay = Random.Range(0, 1.5f);
+                        Invoke("Burn", delay);
+                    }
+                }
+            }
         }
+        
     }
 
     private void Burn()

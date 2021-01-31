@@ -45,7 +45,7 @@ public class Piper : MonoBehaviour
         get { return isAlive; }
     }
     private bool isDancing = false;
-
+    private bool startedGame = false;
     [SerializeField] private MusicalStaminaUI musicalStaminaUI;
     [SerializeField] private ParticleSystem noteParticles;
 
@@ -78,6 +78,7 @@ public class Piper : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                startedGame = true;
                 ToggleWalking(true);
             }
             else if (Input.GetMouseButtonUp(0))
@@ -85,9 +86,13 @@ public class Piper : MonoBehaviour
                 ToggleWalking(false);
             }
 
-            UpdateMusicalStamina(ref deltaTime);
+            if (startedGame)
+            {
+                UpdateMusicalStamina(ref deltaTime);
+            }
+            DetermineMusicalStaminaColour();
             UpdateNoteParticles();
-            musicalStaminaUI.UpdateUI(musicalStamina,currentMusicalStaminaColour);
+            musicalStaminaUI.UpdateUI(musicalStamina, currentMusicalStaminaColour);
         }
 
         if (Input.GetKeyDown(KeyCode.D))
@@ -143,7 +148,6 @@ public class Piper : MonoBehaviour
             StopPlaying();
         }
 
-        DetermineMusicalStaminaColour();
 
     }
 
