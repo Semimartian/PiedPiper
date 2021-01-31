@@ -48,6 +48,7 @@ public class Piper : MonoBehaviour
     private bool startedGame = false;
     [SerializeField] private MusicalStaminaUI musicalStaminaUI;
     [SerializeField] private ParticleSystem noteParticles;
+    [SerializeField] private AudioSource musicAudioSource;
 
     #region DeathRelated:
     [SerializeField] private Transform livingBody;
@@ -92,6 +93,7 @@ public class Piper : MonoBehaviour
             }
             DetermineMusicalStaminaColour();
             UpdateNoteParticles();
+            UpdateMusicVolume();
             musicalStaminaUI.UpdateUI(musicalStamina, currentMusicalStaminaColour);
         }
 
@@ -110,6 +112,11 @@ public class Piper : MonoBehaviour
     {
         noteParticles.startColor = currentMusicalStaminaColour;
     }
+
+    private void UpdateMusicVolume()
+    {
+        musicAudioSource.volume = musicalStamina;
+     }
 
     private void Die()
     {
