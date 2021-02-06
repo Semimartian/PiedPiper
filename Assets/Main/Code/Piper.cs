@@ -16,6 +16,8 @@ public class Piper : MonoBehaviour
     [HideInInspector]public Transform myTransform;
     [Header("Speeds and Forces")]
     [SerializeField] private float rotationSpeedPerSecond;
+    [SerializeField] float rotationRange = 45;
+    private float? previousFingerX;
     [SerializeField] private float forwardSpeedPerSecond;
     private float currentForwardSpeed;
     [SerializeField] private float AccelarationPerSecond = 0.5f;
@@ -82,15 +84,16 @@ public class Piper : MonoBehaviour
                 startedGame = true;
                 ToggleWalking(true);
             }
-            else if (Input.GetMouseButtonUp(0))
+           /* else if (Input.GetMouseButtonUp(0))
             {
                 ToggleWalking(false);
-            }
+            }*/
 
             if (startedGame)
             {
                 UpdateMusicalStamina(ref deltaTime);
             }
+            //TODO: We can invoke these less frequently than Update() 
             DetermineMusicalStaminaColour();
             UpdateNoteParticles();
             UpdateMusicVolume();
@@ -118,6 +121,27 @@ public class Piper : MonoBehaviour
         musicAudioSource.volume = musicalStamina;
      }
 
+    private void ToggleWalking(bool value)
+    {
+        isWalking = value;
+        animator.SetBool("IsWalking", value);
+    }
+
+    private void UpdateMusicalStamina(ref float deltaTime)
+    {
+        musicalStamina -= musicalStaminaReductionPerSecond * deltaTime;
+        if (musicalStamina <= 0)
+        {
+            StopPlaying();
+        }
+    }
+
+    private void DetermineMusicalStaminaColour()
+    {
+        currentMusicalStaminaColour = musicalStaminaColours.Evaluate(musicalStamina);
+          //  Color.Lerp(minMusicalStaminaColour, maxMusicalStaminaColour, musicalStamina);
+    }
+
     private void Die()
     {
         Debug.Log("IsSkeleton");
@@ -139,29 +163,6 @@ public class Piper : MonoBehaviour
 
         mainCamera.ChangeState(MainCamera.CameraStates.Static);
 
-    }
-
-    private void ToggleWalking(bool value)
-    {
-        isWalking = value;
-        animator.SetBool("IsWalking", value);
-    }
-
-    private void UpdateMusicalStamina(ref float deltaTime)
-    {
-        musicalStamina -= musicalStaminaReductionPerSecond * deltaTime;
-        if (musicalStamina <= 0)
-        {
-            StopPlaying();
-        }
-
-
-    }
-
-    private void DetermineMusicalStaminaColour()
-    {
-        currentMusicalStaminaColour = musicalStaminaColours.Evaluate(musicalStamina);
-          //  Color.Lerp(minMusicalStaminaColour, maxMusicalStaminaColour, musicalStamina);
     }
 
     private void StopPlaying()
@@ -251,43 +252,60 @@ public class Piper : MonoBehaviour
             gameOverColliders[i].enabled = true;
         }
         gameCollider.enabled = false;
-
-        
+ 
     }
-
-    private float previousMouseX;
 
     private void FixedUpdate()
     {
         float deltaTime = Time.fixedDeltaTime;
+        HandleMovement(ref deltaTime);
+    }
 
-        float mouseX = Input.mousePosition.x;
+    private void HandleMovement(ref float deltaTime)
+    {
+        float? fingerX = null; //Why doesnt this work? (Input.GetMouseButton(0) ? Input.mousePosition.x : null);
+        if (Input.GetMouseButton(0))
+        {
+            fingerX = Input.mousePosition.x;
+        }
 
         if (isWalking)
         {
-
-            float mouseMovement = //Input.GetAxisRaw("Mouse X");
-                mouseX - previousMouseX;
-
-            Quaternion currentRotationQurternion = rigidbody.rotation;
-            if (mouseMovement != 0)
+            if(fingerX != null)
             {
-                /*myTransform.Rotate(new Vector3
-                    (0, rotationPerSecond * mouseMovement * deltaTime, 0));*/
+                float fingerMovement = 
+                    (previousFingerX == null ? 0 : ((float)fingerX - (float)previousFingerX));
+                //TODO: Figure out wether we need to multiply by deltatime
 
-                Vector3 currentRotation = currentRotationQurternion.eulerAngles;
-                currentRotation += new Vector3
-                    (0, rotationSpeedPerSecond * mouseMovement /** deltaTime*/, 0);
-                currentRotationQurternion = Quaternion.Euler(currentRotation);
-                rigidbody.rotation = currentRotationQurternion;
+                if (fingerMovement != 0)
+                {
+                    Quaternion rotationQuaternion = rigidbody.rotation;
+                    Vector3 rotationEuler = rotationQuaternion.eulerAngles;
+                    rotationEuler += new Vector3(0, rotationSpeedPerSecond * fingerMovement /** deltaTime*/, 0);
+                    //Clamp
+                    {
+                        float clampedY = rotationEuler.y;
+                        if (clampedY > 180)
+                        {
+                            clampedY -= 360;
+                        }
+                        clampedY = Mathf.Clamp(clampedY, -rotationRange, rotationRange);
+                        rotationEuler.y = clampedY;
+                        //TODO: This is not pretty and when I move the mouse fast it seems to break
+                    }
+                    // Debug.Log($"rotationEuler: {rotationEuler.y.ToString("f2")}");
+                    rotationQuaternion = Quaternion.Euler(rotationEuler);
+                    rigidbody.rotation = rotationQuaternion;
+                }
             }
+           
 
             currentForwardSpeed += AccelarationPerSecond * deltaTime;
             if (currentForwardSpeed > forwardSpeedPerSecond)
             {
                 currentForwardSpeed = forwardSpeedPerSecond;
             }
-        }
+        }//TODO: Something smells bad down here:
         else
         {
             currentForwardSpeed -= deaccelerationPerSecond * deltaTime;
@@ -297,18 +315,15 @@ public class Piper : MonoBehaviour
             }
         }
 
-        if(currentForwardSpeed != 0)
+        if ( currentForwardSpeed != 0)
         {
             Vector3 Movement = myTransform.forward * currentForwardSpeed * deltaTime;
             //  rigidbody.AddForce (Movement, ForceMode.VelocityChange);
             rigidbody.MovePosition(rigidbody.position + Movement);
         }
 
-        previousMouseX = mouseX;
-
+        previousFingerX = fingerX;
     }
-
-
     /*  private void Jump()
       {
           rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);

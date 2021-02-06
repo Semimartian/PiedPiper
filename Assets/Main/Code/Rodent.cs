@@ -9,30 +9,37 @@ public class Rodent : MonoBehaviour, ISuckable
     [HideInInspector] public Transform myTransform;
    // [HideInInspector] public Transform followTarget;
     private const float FORWARD_SPEED_PER_SECOND = 2.2f;
-
     private const float ACCELERATION_PER_SECOND = 8f;
     private const float DEACCELERATION_PER_SECOND = 8f;
 
     private float currentSpeed = 0;
-    // public const float DESIRED_DISTANCE_FROM_KIN = 0;// 1f;
-   // public const float ACCEPTABLE_DISTANCE_FROM_KIN = 1f;
-
-    private bool isFrightened = false;
     bool isBurning = false;
-
-    public bool IsFrightened
-    {
-        get
-        {
-            return isFrightened;
-        }
-    }
-    private bool isRunningAway = false;
-
 
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject graphics;
     [SerializeField] private GameObject collider;
+
+    private struct IdleRoutineData
+    {
+        public float nextRotationTime;
+        public float nextMovementSwitchTime;
+        public bool isMoving;
+    }
+
+    private IdleRoutineData idleRoutineData;
+    // public const float DESIRED_DISTANCE_FROM_KIN = 0;// 1f;
+    // public const float ACCEPTABLE_DISTANCE_FROM_KIN = 1f;
+
+    // private bool isFrightened = false;
+    /* public bool IsFrightened
+    {
+      get
+      {
+          return isFrightened;
+      }
+    }*/
+    // private Vector3 lookAtPositionAfterFrighten;
+    // private bool isRunningAway = false;
 
     private void Awake()
     {
@@ -40,7 +47,6 @@ public class Rodent : MonoBehaviour, ISuckable
         rigidbody = GetComponent<Rigidbody>();
       //  Invoke("Tweet", Random.Range(0f, 12f));
     }
-
 
     public void ModifySpeed(ref float deltaTime, ref Vector3 targetPosition,  float desiredSquaredDistance)
     {
@@ -51,7 +57,6 @@ public class Rodent : MonoBehaviour, ISuckable
         currentSpeed = Mathf.Clamp(currentSpeed, 0, FORWARD_SPEED_PER_SECOND);
 
     }
-
 
     public void WalkTowards(ref float deltaTime, ref Vector3 targetPosition, bool disregardY)
     {
@@ -78,47 +83,47 @@ public class Rodent : MonoBehaviour, ISuckable
 
     public void MightJump()
     {
+        //TODO: This method be ugly, get rid of it or at least get rid of the hardcoded mess
         bool jump = Random.Range(0, 256) == 0;
         if (jump)
         {
             //Debug.Log("Jump");
             float force = Random.Range(0, 3.5f);
             rigidbody.AddForce(Vector3.up * force, ForceMode.Impulse);
-
         }
     }
 
-   /* public void BecomeFrightened(ref Vector3 FrighteningOrigin)
-    {
-        if (IsFrightened)
-        {
-            return;
-        }
-        Debug.Log("FRIGHT");
-        isFrightened = true;
-        GameManager.OnRodentDeath();
+    #region Fright:
+    /* public void BecomeFrightened(ref Vector3 FrighteningOrigin)
+     {
+         if (IsFrightened)
+         {
+             return;
+         }
+         Debug.Log("FRIGHT");
+         isFrightened = true;
+         GameManager.OnRodentDeath();
 
 
-        rigidbody.AddForce(Vector3.up * 0.6f, ForceMode.Impulse);
+         rigidbody.AddForce(Vector3.up * 0.6f, ForceMode.Impulse);
 
-        Vector3 myPosition = myTransform.position;
-        Vector3 direction =
-            (myPosition - FrighteningOrigin).normalized;
+         Vector3 myPosition = myTransform.position;
+         Vector3 direction =
+             (myPosition - FrighteningOrigin).normalized;
 
-        lookAtPositionAfterFrighten = myPosition + direction;
-        worryQuad.Appear();
+         lookAtPositionAfterFrighten = myPosition + direction;
+         worryQuad.Appear();
 
-        Invoke("RunAway", 0.5f);
-    }*/
+         Invoke("RunAway", 0.5f);
+     }*/
 
-    private void RunAway()
+    /*private void RunAway()
     {
         myTransform.LookAt(lookAtPositionAfterFrighten);
         isRunningAway = true;
     }
-
-    private Vector3 lookAtPositionAfterFrighten;
-
+    */
+    /*
     public void FrightendRoutine(ref float deltaTime)
     {
         if (isRunningAway)
@@ -127,18 +132,10 @@ public class Rodent : MonoBehaviour, ISuckable
             WalkForward(ref deltaTime);
         }
 
-    }
-
+    }*/
+    #endregion
     #region Idle:
-    private struct IdleRoutineData
-    {
-        public float nextRotationTime;
-        public float nextMovementSwitchTime;
-        public bool isMoving;
 
-    }
-
-    private IdleRoutineData idleRoutineData;
 
     public void IdleRoutine(ref float time, ref float deltaTime, ref Vector3 targetPosition, float acceptableSquaredDistance)
     {
@@ -165,6 +162,7 @@ public class Rodent : MonoBehaviour, ISuckable
 
         if (time > idleRoutineData.nextMovementSwitchTime)
         {
+            //HARDCODED
             idleRoutineData.nextMovementSwitchTime = time + Random.Range(0, 1.5f);
             idleRoutineData.isMoving = Random.Range(0, 2) == 0 ? false : true;
         }
@@ -257,13 +255,12 @@ public class Rodent : MonoBehaviour, ISuckable
                     if (shouldBurn)
                     {
                         isBurning = true;
-                        float delay = Random.Range(0, 1.5f);
+                        float delay = Random.Range(0, 1.5f);//HARDCODED
                         Invoke("Burn", delay);
                     }
                 }
             }
-        }
-        
+        } 
     }
 
     private void Burn()
@@ -281,9 +278,8 @@ public class Rodent : MonoBehaviour, ISuckable
             Transform flameTransform = Spawner.instance.SpawnFlame().transform;
             flameTransform.transform.position = myPosition;
 
-            Invoke("TurnIntoDrumStick", 0.2f);
+            Invoke("TurnIntoDrumStick", 0.2f);//HARDCODED
         }
-
     }
 
     private void TurnIntoDrumStick()
@@ -312,7 +308,7 @@ public class Rodent : MonoBehaviour, ISuckable
         if (isAlive)
         {
             SoundManager.PlayOneShotSoundAt(SoundNames.MouseTweet, myTransform.position);
-            Invoke("Tweet", Random.Range(5f, 26f));
+            Invoke("Tweet", Random.Range(5f, 26f));//HARDCODED
         }
     }
 
@@ -321,6 +317,7 @@ public class Rodent : MonoBehaviour, ISuckable
         isAlive = false;
         GameManager.OnRodentDeath();
     }
+
     #region Suck
     public Transform GetTransform()
     {
@@ -337,7 +334,6 @@ public class Rodent : MonoBehaviour, ISuckable
         Die();
         DeathCry();
         gameObject.SetActive(false);
-
     }
     #endregion
 }

@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < rodents.Length; i++)
         {
             Rodent rodent = rodents[i];
-            if (rodent.isAlive && !rodent.IsFrightened)
+            if (rodent.isAlive)// && !rodent.IsFrightened)
             {
                 relevantRodents++;
             }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class MouseTrap : MonoBehaviour
 {
     [SerializeField] private float jumpForce;
+    // TODO: This doesn't look like something that should differ from one instance to the other. Make it static or move it to some data container. 
     private bool triggered = false;
     public void Trigger()
     {
