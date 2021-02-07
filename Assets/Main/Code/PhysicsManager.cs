@@ -40,6 +40,16 @@ public class PhysicsManager : MonoBehaviour
       /* ManageMagnetoAgainstMagnets();
         magneto.MyFixedUpdate();*/
     }
+
+   /* private void OnDrawGizmos()
+    {
+        for (int i = 0; i < suckers.Length; i++)
+        {
+            Gizmos.DrawSphere
+                (suckers[i].attractionField.attractopnPoint.position, suckers[i].attractionField.radius);
+        }
+    }*/
+
     private void ManageSuckers()
     {
         for (int i = 0; i < suckers.Length; i++)

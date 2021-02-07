@@ -8,6 +8,7 @@ public class MusicalStaminaPickUp : MonoBehaviour
 
     public float Collect()
     {
+        SoundManager.PlayOneShotSoundAt(SoundNames.MusicalStaminaCollection, transform.position);
         Destroy(this.gameObject);
         return staminaBoost;
     }

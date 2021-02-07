@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum SoundNames : byte
 {
-    Bark, ChickDeath, Sizzle, ChickTweet, GooseJump
+    Bark, MouseScream, Sizzle, MouseTweet, MouseTrap,Squash, MusicalStaminaCollection
 }
 [Serializable]
 public class CorrectedSoundClip
@@ -36,7 +36,7 @@ public class SoundManager : MonoBehaviour
     private static List<AudioSource> occupiedAudioSources;
     private Sound[] sounds;
     private float LookForIdleSoundsAndReturnThemInterval = 0.5f;
-    private static int poolAddition = 16;
+    private static int poolAddition = 32;
 
     private void Start()
     {

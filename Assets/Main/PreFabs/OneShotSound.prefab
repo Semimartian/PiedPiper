@@ -52,7 +52,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 9
+  MaxDistance: 12
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -62,10 +62,10 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.6666667
+      time: 0.5
       value: 1
       inSlope: 0
-      outSlope: -3.0000002
+      outSlope: -2
       tangentMode: 69
       weightedMode: 0
       inWeight: 0
@@ -73,7 +73,7 @@ AudioSource:
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -3.0000002
+      inSlope: -2
       outSlope: -1.1111112
       tangentMode: 69
       weightedMode: 0

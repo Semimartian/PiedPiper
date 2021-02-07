@@ -1,5 +1,4 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,57 +7,60 @@ public class Rodent : MonoBehaviour, ISuckable
     private Rigidbody rigidbody;
     [HideInInspector] public bool isAlive;
     [HideInInspector] public Transform myTransform;
-    [HideInInspector] public Transform followTarget;
+   // [HideInInspector] public Transform followTarget;
     private const float FORWARD_SPEED_PER_SECOND = 2.2f;
-
     private const float ACCELERATION_PER_SECOND = 8f;
     private const float DEACCELERATION_PER_SECOND = 8f;
 
     private float currentSpeed = 0;
-    public const float DESIRED_DISTANCE_FROM_KIN = 1f;
-
-    public const float ACCEPTABLE_DISTANCE_FROM_KIN = 1f;
-
-    private bool isFrightened = false;
     bool isBurning = false;
-
-    public bool IsFrightened
-    {
-        get
-        {
-            return isFrightened;
-        }
-    }
-    private bool isRunningAway = false;
-
 
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject graphics;
     [SerializeField] private GameObject collider;
-    [SerializeField] private WorryQuad worryQuad;
+
+    private struct IdleRoutineData
+    {
+        public float nextRotationTime;
+        public float nextMovementSwitchTime;
+        public bool isMoving;
+    }
+
+    private IdleRoutineData idleRoutineData;
+    // public const float DESIRED_DISTANCE_FROM_KIN = 0;// 1f;
+    // public const float ACCEPTABLE_DISTANCE_FROM_KIN = 1f;
+
+    // private bool isFrightened = false;
+    /* public bool IsFrightened
+    {
+      get
+      {
+          return isFrightened;
+      }
+    }*/
+    // private Vector3 lookAtPositionAfterFrighten;
+    // private bool isRunningAway = false;
 
     private void Awake()
     {
         myTransform = transform;
         rigidbody = GetComponent<Rigidbody>();
-        Invoke("Tweet", Random.Range(0f, 9f));
+      //  Invoke("Tweet", Random.Range(0f, 12f));
     }
 
-
-    public void CheckForKinDistance(ref float deltaTime)
+    public void ModifySpeed(ref float deltaTime, ref Vector3 targetPosition,  float desiredSquaredDistance)
     {
         float modifier = deltaTime *
-            ((Vector3.Distance(myTransform.position, followTarget.position) > DESIRED_DISTANCE_FROM_KIN)
+            ((Vector3.SqrMagnitude(myTransform.position - targetPosition) > desiredSquaredDistance)
             ? ACCELERATION_PER_SECOND : -DEACCELERATION_PER_SECOND);
         currentSpeed += modifier;
         currentSpeed = Mathf.Clamp(currentSpeed, 0, FORWARD_SPEED_PER_SECOND);
 
     }
 
-
-    public void GoTowardsKin(ref float deltaTime)
+    public void WalkTowards(ref float deltaTime, ref Vector3 targetPosition, bool disregardY)
     {
-        LookAt(followTarget.position,true);
+        LookAt(targetPosition, disregardY);
         if (currentSpeed > 0)
         {
             WalkForward(ref deltaTime);
@@ -79,37 +81,49 @@ public class Rodent : MonoBehaviour, ISuckable
         animator.SetBool("IsWalking", true);
     }
 
-    public void BecomeFrightened(ref Vector3 FrighteningOrigin)
+    public void MightJump()
     {
-        if (IsFrightened)
+        //TODO: This method be ugly, get rid of it or at least get rid of the hardcoded mess
+        bool jump = Random.Range(0, 256) == 0;
+        if (jump)
         {
-            return;
+            //Debug.Log("Jump");
+            float force = Random.Range(0, 3.5f);
+            rigidbody.AddForce(Vector3.up * force, ForceMode.Impulse);
         }
-        Debug.Log("FRIGHT");
-        isFrightened = true;
-        GameManager.OnChickDeath();
-
-
-        rigidbody.AddForce(Vector3.up * 0.6f, ForceMode.Impulse);
-
-        Vector3 myPosition = myTransform.position;
-        Vector3 direction =
-            (myPosition - FrighteningOrigin).normalized;
-
-        lookAtPositionAfterFrighten = myPosition + direction;
-        worryQuad.Appear();
-
-        Invoke("RunAway", 0.5f);
     }
 
-    private void RunAway()
+    #region Fright:
+    /* public void BecomeFrightened(ref Vector3 FrighteningOrigin)
+     {
+         if (IsFrightened)
+         {
+             return;
+         }
+         Debug.Log("FRIGHT");
+         isFrightened = true;
+         GameManager.OnRodentDeath();
+
+
+         rigidbody.AddForce(Vector3.up * 0.6f, ForceMode.Impulse);
+
+         Vector3 myPosition = myTransform.position;
+         Vector3 direction =
+             (myPosition - FrighteningOrigin).normalized;
+
+         lookAtPositionAfterFrighten = myPosition + direction;
+         worryQuad.Appear();
+
+         Invoke("RunAway", 0.5f);
+     }*/
+
+    /*private void RunAway()
     {
         myTransform.LookAt(lookAtPositionAfterFrighten);
         isRunningAway = true;
     }
-
-    private Vector3 lookAtPositionAfterFrighten;
-
+    */
+    /*
     public void FrightendRoutine(ref float deltaTime)
     {
         if (isRunningAway)
@@ -118,27 +132,20 @@ public class Rodent : MonoBehaviour, ISuckable
             WalkForward(ref deltaTime);
         }
 
-    }
-
+    }*/
+    #endregion
     #region Idle:
-    private struct IdleRoutineData
+
+
+    public void IdleRoutine(ref float time, ref float deltaTime, ref Vector3 targetPosition, float acceptableSquaredDistance)
     {
-        public float nextRotationTime;
-        public float nextMovementSwitchTime;
-        public bool isMoving;
-
-    }
-
-    private IdleRoutineData idleRoutineData;
-
-    public void IdleRoutine(ref float time, ref float deltaTime)
-    {
-        bool isInAcceptableRange = (Vector3.Distance(myTransform.position, followTarget.position) < ACCEPTABLE_DISTANCE_FROM_KIN);
+        bool isInAcceptableRange = 
+            (Vector3.SqrMagnitude(myTransform.position- targetPosition) < acceptableSquaredDistance);
 
         if (!isInAcceptableRange)
         {
            // myTransform.LookAt(followTarget);
-            LookAt(followTarget.position,true);
+            LookAt(targetPosition, true);
 
             idleRoutineData.isMoving = true;
         }
@@ -146,7 +153,7 @@ public class Rodent : MonoBehaviour, ISuckable
         {
             idleRoutineData.nextRotationTime = time + Random.Range(0, 1.5f);
 
-            Vector3 currentEuler = rigidbody.rotation.eulerAngles;
+            Vector3 currentEuler = new Vector3();// rigidbody.rotation.eulerAngles;
             currentEuler.y = Random.Range(0, 360);
 
             rigidbody.rotation = Quaternion.Euler(currentEuler);
@@ -155,6 +162,7 @@ public class Rodent : MonoBehaviour, ISuckable
 
         if (time > idleRoutineData.nextMovementSwitchTime)
         {
+            //HARDCODED
             idleRoutineData.nextMovementSwitchTime = time + Random.Range(0, 1.5f);
             idleRoutineData.isMoving = Random.Range(0, 2) == 0 ? false : true;
         }
@@ -183,55 +191,76 @@ public class Rodent : MonoBehaviour, ISuckable
         rigidbody.rotation = Quaternion.LookRotation(newForward);
     }
 
+    private void Squash()
+    {
+        Die();
+        DeathCry();
+        Vector3 position = myTransform.position;
+        SoundManager.PlayOneShotSoundAt(SoundNames.Squash, position);
+        EffectsManager.PlayEffectAt(EffectNames.Blood, position);
+        animator.SetTrigger("Squash");
+
+        collider.SetActive(false);
+        rigidbody.isKinematic = true;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (isAlive)
         {
             string colliderTag = collision.gameObject.tag;
-            if (colliderTag == "Squasher")
+            if (colliderTag == "Squasher" && rigidbody.position.y < -0.1f) //TODO: GAY AS HELL
             {
                 Squash();
             }
-            else if(colliderTag == "Hot" && !isBurning)
-            {
-                isBurning = true;
-                float delay = Random.Range(0, 1f);
-                Invoke("Burn", delay);
-            }
-
         }
     }
 
-    private void Squash()
+    private void OnTriggerExit(Collider other)
     {
-        Die();
-
-        EffectsManager.PlayEffectAt(EffectNames.Blood, myTransform.position);
-        animator.SetTrigger("Squash");
-        collider.SetActive(false);
-        rigidbody.isKinematic = true;
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (isBurning && collision.gameObject.tag == "Hot")
+        if (isBurning)// && collision.gameObject.tag == "Hot")
         {
-            isBurning = false;
+            HotSurface hotSurface = other.gameObject.GetComponentInParent<HotSurface>();
+            if(hotSurface != null)
+            {
+                isBurning = false;
+            }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        MouseTrap mouseTrap = other.GetComponentInParent<MouseTrap>();
-        if(mouseTrap != null)
+        if (isAlive)
         {
-            mouseTrap.Trigger();
-            Die();
-            graphics.SetActive(false);
-            collider.SetActive(false);
-            rigidbody.isKinematic = true;
-            //Destroy(gameObject);
-        }
+            MouseTrap mouseTrap = other.GetComponentInParent<MouseTrap>();
+            if (mouseTrap != null)
+            {
+                EffectsManager.PlayEffectAt(EffectNames.Blood, myTransform.position);
+                DeathCry();
+                mouseTrap.Trigger();
+                Die();
+                graphics.SetActive(false);
+                collider.SetActive(false);
+                rigidbody.isKinematic = true;
+                //Destroy(gameObject);
+            }
+            else if (/*colliderTag == "Hot" && */!isBurning)
+            {
+
+                HotSurface hotSurface = other.gameObject.GetComponentInParent<HotSurface>();
+                if (hotSurface != null)
+                {
+
+                    bool shouldBurn = (Random.Range(0, hotSurface.burnChance) == 0);
+                    if (shouldBurn)
+                    {
+                        isBurning = true;
+                        float delay = Random.Range(0, 1.5f);//HARDCODED
+                        Invoke("Burn", delay);
+                    }
+                }
+            }
+        } 
     }
 
     private void Burn()
@@ -242,16 +271,15 @@ public class Rodent : MonoBehaviour, ISuckable
 
             Die();
             rigidbody.constraints = RigidbodyConstraints.None;
-            rigidbody.AddForce(Vector3.up * 1, ForceMode.Impulse);
+            rigidbody.AddForce(Vector3.up * 3f, ForceMode.Impulse);
 
             Vector3 myPosition = this.myTransform.position;
 
             Transform flameTransform = Spawner.instance.SpawnFlame().transform;
             flameTransform.transform.position = myPosition;
 
-            Invoke("TurnIntoDrumStick", 0.2f);
+            Invoke("TurnIntoDrumStick", 0.2f);//HARDCODED
         }
-
     }
 
     private void TurnIntoDrumStick()
@@ -272,23 +300,24 @@ public class Rodent : MonoBehaviour, ISuckable
 
     private void DeathCry()
     {
-        SoundManager.PlayOneShotSoundAt(SoundNames.ChickDeath, myTransform.position);
+        SoundManager.PlayOneShotSoundAt(SoundNames.MouseScream, myTransform.position);
     }
 
     private void Tweet()
     {
         if (isAlive)
         {
-            SoundManager.PlayOneShotSoundAt(SoundNames.ChickTweet, myTransform.position);
-            Invoke("Tweet", Random.Range(4f, 10f));
+            SoundManager.PlayOneShotSoundAt(SoundNames.MouseTweet, myTransform.position);
+            Invoke("Tweet", Random.Range(5f, 26f));//HARDCODED
         }
     }
 
     private void Die()
     {
         isAlive = false;
-        GameManager.OnChickDeath();
+        GameManager.OnRodentDeath();
     }
+
     #region Suck
     public Transform GetTransform()
     {
@@ -305,7 +334,6 @@ public class Rodent : MonoBehaviour, ISuckable
         Die();
         DeathCry();
         gameObject.SetActive(false);
-
     }
     #endregion
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,8 @@ public class GameManager : MonoBehaviour
     private static Piper piper;
 
     private static GameManager instance;
-    [SerializeField] private ChicksUI chicksUI;
+    [SerializeField] private RodentsUI rodentsUI;
+    [SerializeField] private Transform piperHead;
 
     // Start is called before the first frame update
 
@@ -25,7 +27,7 @@ public class GameManager : MonoBehaviour
 
         MakeAllRodentsFollowPiper();
 
-        UpdateChicksUI();
+        UpdateNumberOfRodents();
     }
 
     private void MakeAllRodentsFollowPiper()
@@ -35,7 +37,6 @@ public class GameManager : MonoBehaviour
         {
             Rodent rodent = rodents[i];
             rodent.isAlive = true;
-            rodent.followTarget = motherTransform;
         }
     }
     
@@ -44,59 +45,110 @@ public class GameManager : MonoBehaviour
         float deltaTime = Time.fixedDeltaTime;
         float time = Time.time;
         // CheckBabiesKinDistance();
-        ManageBirds(ref time, ref deltaTime);
+        ManageRodents(ref time, ref deltaTime);
       
     }
 
-    private void ManageBirds(ref float time, ref float deltaTime)
+    private void ManageRodents(ref float time, ref float deltaTime)
     {
-        bool piperIsMoving = piper.IsMoving;
+        //Bad programming ahead:
+        bool piperIsAlive = piper.IsAlive;
+        bool piperIsMoving =  piper.IsMoving;
+        bool piperIsPlaying = piper.IsPlaying;
+        Vector3 piperPosition =// piper.myTransform.position;
+            piperHead.position;
 
+        //Debug.Log("piperIsMoving: " + piperIsMoving);
         for (int i = 0; i < rodents.Length; i++)
         {
             Rodent rodent = rodents[i];
             if (rodent.isAlive)
             {
-                if (rodent.IsFrightened)
+               /* if (rodent.IsFrightened)
                 {
                     rodent.FrightendRoutine(ref deltaTime);
                 }
-                else
+                else*/
                 {
-                    if (piperIsMoving)
+                    if (piperIsAlive)
                     {
-                        //The split is weird, also weird method names
-                        rodent.CheckForKinDistance(ref deltaTime);
-                        rodent.GoTowardsKin(ref deltaTime);
+                        if (piperIsPlaying)
+                        {
+                            if (piperIsMoving)
+                            {
+                                //The split is weird, also weird method names
+                                rodent.ModifySpeed(ref deltaTime, ref piperPosition, 3);
+                                rodent.WalkTowards(ref deltaTime, ref piperPosition, true);
+                            }
+                            else
+                            {
+                                rodent.IdleRoutine(ref time, ref deltaTime, ref piperPosition, 10f);
+                            }
+                        }
+                        else //Piper is NOT playing
+                        {
+                            rodent.ModifySpeed(ref deltaTime, ref piperPosition, 0);
+                            rodent.WalkTowards(ref deltaTime, ref piperPosition, false);
+                            if (rodent.myTransform.position.y < piperPosition.y)
+                            {
+                                rodent.MightJump();
+                            }
+                        }
+
                     }
                     else
                     {
-                        rodent.IdleRoutine(ref time, ref deltaTime);
+                        rodent.IdleRoutine(ref time, ref deltaTime, ref piperPosition, 1000f);
                     }
                 }
             }
-
         }
     }
 
-    public static void OnChickDeath()
+    public static void OnRodentDeath()
     {
-        Debug.LogWarning("This method should be updated.");
-       instance.UpdateChicksUI();
+        UpdateNumberOfRodents();
     }
 
-    private void UpdateChicksUI()
+    public static void UpdateNumberOfRodents()
     {
-        int relevantChicks = 0;
+        int relevantRodents = 0;
         for (int i = 0; i < rodents.Length; i++)
         {
             Rodent rodent = rodents[i];
-            if (rodent.isAlive && !rodent.IsFrightened)
+            if (rodent.isAlive)// && !rodent.IsFrightened)
             {
-                relevantChicks++;
+                relevantRodents++;
             }
         }
 
-        chicksUI.UpdateText(relevantChicks);
+        //Debug.LogWarning("This method should be updated.");
+        instance.UpdateRodentsUI(relevantRodents);
+
+        if (relevantRodents == 0)
+        {
+            instance.OnAllRodetsAreDead();
+        }
+    }
+
+
+    public static void OnPiperPanic()
+    {
+        instance.HideRodentsUI();
+    }
+
+    private void HideRodentsUI()
+    {
+        rodentsUI.Hide();
+    }
+
+    private void UpdateRodentsUI(int numberOfRodents)
+    {
+        rodentsUI.UpdateText(numberOfRodents);
+    }
+
+    private void OnAllRodetsAreDead()
+    {
+        piper.Dance();
     }
 }
