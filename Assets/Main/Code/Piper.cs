@@ -13,7 +13,7 @@ public class Piper : MonoBehaviour
     }*/
 
     private Rigidbody rigidbody;
-    [HideInInspector]public Transform myTransform;
+    [HideInInspector] public Transform myTransform;
     [Header("Speeds and Forces")]
     [SerializeField] private float rotationSpeedPerSecond;
     [SerializeField] float rotationRange = 45;
@@ -57,6 +57,11 @@ public class Piper : MonoBehaviour
     [SerializeField] private Rigidbody hat;
     [SerializeField] private Animator deadBody;
     #endregion
+
+    [SerializeField] private Collider gameCollider;
+    [SerializeField] private Transform gameOverCollidersParent;
+
+    private List<Collider> gameOverColliders;
 
     private MainCamera mainCamera;
     public static Piper instance;
@@ -182,7 +187,7 @@ public class Piper : MonoBehaviour
         GameManager.OnPiperPanic();
     }
 
-    internal void Dance()
+    public void Dance()
     {
         ToggleWalking(false);
         isDancing = true;
@@ -199,7 +204,7 @@ public class Piper : MonoBehaviour
         Vector3 newForward = (lookAtPosition - rigidbody.position).normalized;
 
         Quaternion finalRotation = Quaternion.LookRotation(newForward);
-        float rotationSpeed = 120f;
+        float rotationSpeed = 120f;//HARDCODED
         while (true)
         {
             float deltaTime = Time.deltaTime;
@@ -212,10 +217,6 @@ public class Piper : MonoBehaviour
        
     }
 
-    [SerializeField] private Collider gameCollider;
-    [SerializeField] private Transform gameOverCollidersParent;
-
-    private List<Collider> gameOverColliders;
 
     private void InitialiseColliders()
     {
