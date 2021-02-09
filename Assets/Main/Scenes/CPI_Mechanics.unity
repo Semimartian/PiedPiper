@@ -27259,7 +27259,7 @@ PrefabInstance:
     - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
         type: 3}
       propertyPath: rotationRange
-      value: 90
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 6798311869013344770, guid: a8880233ec8884548b6337766aa2eb52,
         type: 3}
