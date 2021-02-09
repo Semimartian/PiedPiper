@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rodent : MonoBehaviour, ISuckable
+public class Rodent : Suckable
 {
     private Rigidbody rigidbody;
     [HideInInspector] public bool isAlive;
@@ -319,17 +319,17 @@ public class Rodent : MonoBehaviour, ISuckable
     }
 
     #region Suck
-    public Transform GetTransform()
+    public override Transform GetTransform()
     {
         return myTransform;
     }
 
-    public Rigidbody GetRigidBody()
+    public override Rigidbody GetRigidBody()
     {
         return rigidbody;
     }
 
-    public void GetSucked()
+    public override void GetSucked()
     {
         Die();
         DeathCry();

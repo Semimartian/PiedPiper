@@ -6,18 +6,28 @@ public class SuckerEnterance : MonoBehaviour
 {
     [SerializeField] private Transform exit;
     [SerializeField] private AudioSource cuttingSound;
+    [SerializeField] private int maxSucked;
+    private bool isOpen = true;
     private int rodentsInside = 0;
+    private int totalSucked = 0;
     private float volumeChangePerSecond = 1.8f;
+
+    public bool IsOpen { get => isOpen; }
 
     //[SerializeField] private ParticleSystem hairParticleSystem;
     private void OnTriggerEnter(Collider other)
     {
-        ISuckable suckable = other.gameObject.GetComponentInParent<ISuckable>();
-        if (suckable != null)
+        if (isOpen && other.gameObject.TryGetComponent(out Suckable suckable))
         {
             rodentsInside++;
+            totalSucked++;
+            Debug.Log(totalSucked);
             suckable.GetSucked();
             Invoke("SpawnHairs", 1.2f);
+            if (totalSucked >= maxSucked)
+            {
+                isOpen = false;
+            }
         }
     }
 

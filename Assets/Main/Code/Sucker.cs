@@ -5,27 +5,42 @@ using UnityEngine;
 [System.Serializable]
 public struct Attraction
 {
-    public Transform attractopnPoint;
+    public Transform attractionPoint;
     public float radius;
     public float force;
 }
+
 public class Sucker : MonoBehaviour
 {
+    [SerializeField] private SuckerEnterance suckerEnterance;
     public Attraction attractionField;
     //public Rigidbody rigidbody;
 
-    public void Initialise()
+    public void Initialize()
     {
        // rigidbody = GetComponent<Rigidbody>();
-        if (attractionField.attractopnPoint == null)
+        if (attractionField.attractionPoint == null)
         {
-            attractionField.attractopnPoint = transform;
+            attractionField.attractionPoint = transform;
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnTriggerStay(Collider other)
     {
-        Gizmos.DrawWireSphere
-            (attractionField.attractopnPoint.position, attractionField.radius);
+        if (suckerEnterance.IsOpen && other.gameObject.TryGetComponent(out Suckable suckable)) {
+            Vector3 attractionPoint = attractionField.attractionPoint.position;
+            Vector3 suckablePosition = suckable.transform.position;
+            float distanceFromSucker = Vector3.Distance(attractionPoint, suckablePosition);
+            if (distanceFromSucker <= attractionField.radius)
+            {
+                // Debug.Log("distanceFromMagnet" + distanceFromMagnet);
+                float attractionSpeed =
+                    (Mathf.Abs(distanceFromSucker - attractionField.radius) / attractionField.radius) * attractionField.force;
+                suckable.GetRigidBody().AddForce
+                    ((attractionPoint - suckablePosition).normalized//TODO: Check if this really is the direction
+                    * (attractionSpeed /** deltaTime*/), ForceMode.Force);
+                // Debug.Log("Sucking");
+            }
+        }
     }
 }

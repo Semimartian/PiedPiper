@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ISuckable 
+public abstract class Suckable : MonoBehaviour
 {
-    Rigidbody GetRigidBody();
-    void GetSucked();
-    Transform GetTransform();
+    [SerializeField] [Range(0, 1)] private float suckChance;
+    private bool isSuckable = true;
+
+    public abstract Rigidbody GetRigidBody();
+    public abstract void GetSucked();
+    public abstract Transform GetTransform();
 }

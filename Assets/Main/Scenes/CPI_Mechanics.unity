@@ -9068,10 +9068,14 @@ PrefabInstance:
       propertyPath: attractionField.force
       value: 75
       objectReference: {fileID: 0}
+    - target: {fileID: 590326137, guid: 6f821cb93580bd64da426ae110e4c100, type: 3}
+      propertyPath: attractionField.attractionPoint
+      value: 
+      objectReference: {fileID: 512384793}
     - target: {fileID: 1616354243030737140, guid: 6f821cb93580bd64da426ae110e4c100,
         type: 3}
       propertyPath: m_Name
-      value: MotherSucker (1)
+      value: MotherSucker
       objectReference: {fileID: 0}
     - target: {fileID: 2969578073200974945, guid: 6f821cb93580bd64da426ae110e4c100,
         type: 3}
@@ -9323,6 +9327,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 169d9e43961d8944d907cb797147dd8e, type: 3}
+--- !u!4 &512384793 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 110568464, guid: 6f821cb93580bd64da426ae110e4c100,
+    type: 3}
+  m_PrefabInstance: {fileID: 492596645}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &513491227 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3395149855734210377, guid: 169d9e43961d8944d907cb797147dd8e,
@@ -14420,7 +14430,7 @@ PrefabInstance:
     - target: {fileID: 3881095841449751302, guid: be6b7e9f8da797a40ac11148b0afc5ab,
         type: 3}
       propertyPath: m_Name
-      value: SteamRoller (1)
+      value: SteamRoller
       objectReference: {fileID: 0}
     - target: {fileID: 5502355097843522458, guid: be6b7e9f8da797a40ac11148b0afc5ab,
         type: 3}
@@ -22238,7 +22248,7 @@ PrefabInstance:
     - target: {fileID: 8956847073939508394, guid: 07fa23bd870769645b297810b17596c5,
         type: 3}
       propertyPath: m_Name
-      value: HorseRanch (1)
+      value: HorseRanch
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07fa23bd870769645b297810b17596c5, type: 3}
