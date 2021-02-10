@@ -14631,6 +14631,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1153520331}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &868433600 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7849319928808389801, guid: a8880233ec8884548b6337766aa2eb52,
+    type: 3}
+  m_PrefabInstance: {fileID: 1590295373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &872725169 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3395149855734210377, guid: 169d9e43961d8944d907cb797147dd8e,
@@ -27291,6 +27297,11 @@ PrefabInstance:
       propertyPath: rotationRange
       value: 45
       objectReference: {fileID: 0}
+    - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
+        type: 3}
+      propertyPath: gameOverPanel
+      value: 
+      objectReference: {fileID: 868433600}
     - target: {fileID: 6798311869013344770, guid: a8880233ec8884548b6337766aa2eb52,
         type: 3}
       propertyPath: m_LocalPosition.y
