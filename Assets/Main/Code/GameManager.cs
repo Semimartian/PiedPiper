@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     //[SerializeField] private Transform[] birds;
@@ -15,9 +15,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RodentsUI rodentsUI;
     [SerializeField] private Transform piperHead;
 
+    [SerializeField] private GameObject gameOverPanel;
+
     // Start is called before the first frame update
 
     private void Awake()
+    {
+        Initailise();
+    }
+
+    private void Initailise()
     {
         instance = this;
 
@@ -28,6 +35,8 @@ public class GameManager : MonoBehaviour
         MakeAllRodentsFollowPiper();
 
         UpdateNumberOfRodents();
+
+        gameOverPanel.SetActive(false);
     }
 
     private void MakeAllRodentsFollowPiper()
@@ -150,5 +159,16 @@ public class GameManager : MonoBehaviour
     private void OnAllRodetsAreDead()
     {
         piper.Dance();
+    }
+
+    public void RestartLevel()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.buildIndex);
+    }
+
+    public static void OnGameOver()
+    {
+        instance.gameOverPanel.SetActive(true);
     }
 }

@@ -24,7 +24,6 @@ public class Piper : MonoBehaviour
     [SerializeField] private float deaccelerationPerSecond = 0.5f;
 
     [SerializeField] private Animator animator;
-    [SerializeField] private GameObject gameOverPanel;
     private bool isWalking = false;
     public bool IsMoving
     {
@@ -188,7 +187,7 @@ public class Piper : MonoBehaviour
         GameManager.OnPiperPanic();
         yield return new WaitForSeconds(2);
         Die();
-        gameOverPanel.SetActive(true);
+        GameManager.OnGameOver();
     }
 
     public void Dance()
