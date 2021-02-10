@@ -11,13 +11,13 @@ public class Rodent : Suckable
     private const float FORWARD_SPEED_PER_SECOND = 2.2f;
     private const float ACCELERATION_PER_SECOND = 8f;
     private const float DEACCELERATION_PER_SECOND = 8f;
+    private BoxCollider collider;
 
     private float currentSpeed = 0;
     bool isBurning = false;
 
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject graphics;
-    [SerializeField] private GameObject collider;
 
     private struct IdleRoutineData
     {
@@ -45,6 +45,7 @@ public class Rodent : Suckable
     {
         myTransform = transform;
         rigidbody = GetComponent<Rigidbody>();
+        collider = GetComponent<BoxCollider>();
       //  Invoke("Tweet", Random.Range(0f, 12f));
     }
 
@@ -200,7 +201,7 @@ public class Rodent : Suckable
         EffectsManager.PlayEffectAt(EffectNames.Blood, position);
         animator.SetTrigger("Squash");
 
-        collider.SetActive(false);
+        collider.enabled = false;
         rigidbody.isKinematic = true;
     }
 
@@ -240,7 +241,7 @@ public class Rodent : Suckable
                 mouseTrap.Trigger();
                 Die();
                 graphics.SetActive(false);
-                collider.SetActive(false);
+                collider.enabled = false;
                 rigidbody.isKinematic = true;
                 //Destroy(gameObject);
             }
@@ -286,7 +287,7 @@ public class Rodent : Suckable
     {
         DeathCry();
         graphics.SetActive(false);
-        collider.SetActive(false);
+        collider.enabled = false;
         Vector3 myPosition = this.myTransform.position;
 
         Transform puffTransform = Spawner.instance.SpawnPuff().transform;

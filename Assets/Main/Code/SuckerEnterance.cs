@@ -21,7 +21,6 @@ public class SuckerEnterance : MonoBehaviour
         {
             rodentsInside++;
             totalSucked++;
-            Debug.Log(totalSucked);
             suckable.GetSucked();
             Invoke("SpawnHairs", 1.2f);
             if (totalSucked >= maxSucked)
