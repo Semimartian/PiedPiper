@@ -24,6 +24,7 @@ public class Piper : MonoBehaviour
     [SerializeField] private float deaccelerationPerSecond = 0.5f;
 
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject gameOverPanel;
     private bool isWalking = false;
     public bool IsMoving
     {
@@ -137,7 +138,7 @@ public class Piper : MonoBehaviour
         musicalStamina -= musicalStaminaReductionPerSecond * deltaTime;
         if (musicalStamina <= 0)
         {
-            StopPlaying();
+            StartCoroutine(StopPlaying());
         }
     }
 
@@ -170,7 +171,7 @@ public class Piper : MonoBehaviour
 
     }
 
-    private void StopPlaying()
+    private IEnumerator StopPlaying()
     {
         Debug.Log("I shall play no longer!");
 
@@ -185,6 +186,9 @@ public class Piper : MonoBehaviour
         rigidbody.isKinematic = true;
 
         GameManager.OnPiperPanic();
+        yield return new WaitForSeconds(2);
+        Die();
+        gameOverPanel.SetActive(true);
     }
 
     public void Dance()
