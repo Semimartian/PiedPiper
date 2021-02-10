@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rodent : MonoBehaviour, ISuckable
+public class Rodent : Suckable
 {
     private Rigidbody rigidbody;
     [HideInInspector] public bool isAlive;
@@ -11,13 +11,13 @@ public class Rodent : MonoBehaviour, ISuckable
     private const float FORWARD_SPEED_PER_SECOND = 2.2f;
     private const float ACCELERATION_PER_SECOND = 8f;
     private const float DEACCELERATION_PER_SECOND = 8f;
+    private BoxCollider collider;
 
     private float currentSpeed = 0;
     bool isBurning = false;
 
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject graphics;
-    [SerializeField] private GameObject collider;
 
     private struct IdleRoutineData
     {
@@ -45,6 +45,7 @@ public class Rodent : MonoBehaviour, ISuckable
     {
         myTransform = transform;
         rigidbody = GetComponent<Rigidbody>();
+        collider = GetComponent<BoxCollider>();
       //  Invoke("Tweet", Random.Range(0f, 12f));
     }
 
@@ -200,7 +201,7 @@ public class Rodent : MonoBehaviour, ISuckable
         EffectsManager.PlayEffectAt(EffectNames.Blood, position);
         animator.SetTrigger("Squash");
 
-        collider.SetActive(false);
+        collider.enabled = false;
         rigidbody.isKinematic = true;
     }
 
@@ -240,7 +241,7 @@ public class Rodent : MonoBehaviour, ISuckable
                 mouseTrap.Trigger();
                 Die();
                 graphics.SetActive(false);
-                collider.SetActive(false);
+                collider.enabled = false;
                 rigidbody.isKinematic = true;
                 //Destroy(gameObject);
             }
@@ -286,7 +287,7 @@ public class Rodent : MonoBehaviour, ISuckable
     {
         DeathCry();
         graphics.SetActive(false);
-        collider.SetActive(false);
+        collider.enabled = false;
         Vector3 myPosition = this.myTransform.position;
 
         Transform puffTransform = Spawner.instance.SpawnPuff().transform;
@@ -319,17 +320,17 @@ public class Rodent : MonoBehaviour, ISuckable
     }
 
     #region Suck
-    public Transform GetTransform()
+    public override Transform GetTransform()
     {
         return myTransform;
     }
 
-    public Rigidbody GetRigidBody()
+    public override Rigidbody GetRigidBody()
     {
         return rigidbody;
     }
 
-    public void GetSucked()
+    public override void GetSucked()
     {
         Die();
         DeathCry();
