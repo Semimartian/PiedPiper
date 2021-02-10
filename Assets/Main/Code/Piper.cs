@@ -56,11 +56,11 @@ public class Piper : MonoBehaviour
     [SerializeField] private Transform livingBody;
     [SerializeField] private Rigidbody hat;
     [SerializeField] private Animator deadBody;
+    [SerializeField] private float panicDuration = 2;
     #endregion
 
     [SerializeField] private Collider gameCollider;
     [SerializeField] private Transform gameOverCollidersParent;
-
     private List<Collider> gameOverColliders;
 
     private MainCamera mainCamera;
@@ -105,6 +105,7 @@ public class Piper : MonoBehaviour
             musicalStaminaUI.UpdateUI(musicalStamina, currentMusicalStaminaColour);
         }
 
+        #region Debugging:
         if (Input.GetKeyDown(KeyCode.D))
         {
             Die();
@@ -114,6 +115,7 @@ public class Piper : MonoBehaviour
         {
             StartCoroutine(TurnBack());
         }
+        #endregion
     }
 
     private void UpdateNoteParticles()
@@ -185,7 +187,7 @@ public class Piper : MonoBehaviour
         rigidbody.isKinematic = true;
 
         GameManager.OnPiperPanic();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(panicDuration);
         Die();
         GameManager.OnGameOver();
     }
@@ -327,24 +329,6 @@ public class Piper : MonoBehaviour
         }
 
         previousFingerX = fingerX;
-    }
-    /*  private void Jump()
-      {
-          rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-          animator.SetTrigger("Jump");
-         // animator.SetBool("InAir", true);
-          SoundManager.PlayOneShotSoundAt(SoundNames.GooseJump, myTransform.position);
-
-      }*/
-
-    /*private void Land()
-    {
-        animator.SetBool("InAir", false);
-    }*/
-
-    private void OnCollisionEnter(Collision collision)
-    {
-       // Land();
     }
 
     private void OnTriggerEnter(Collider other)

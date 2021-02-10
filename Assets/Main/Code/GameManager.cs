@@ -16,8 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform piperHead;
 
     [SerializeField] private GameObject gameOverPanel;
-
-    // Start is called before the first frame update
+    [SerializeField] private GameObject winPanel;
 
     private void Awake()
     {
@@ -37,6 +36,8 @@ public class GameManager : MonoBehaviour
         UpdateNumberOfRodents();
 
         gameOverPanel.SetActive(false);
+        winPanel.SetActive(false);
+
     }
 
     private void MakeAllRodentsFollowPiper()
@@ -113,7 +114,28 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    #region Debugging:
+    private void Update()
+    { 
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            KillAllRodents();
+        }
+    }
 
+    private void KillAllRodents()
+    {
+        for (int i = 0; i < rodents.Length; i++)
+        {
+            Rodent rodent = rodents[i];
+            if (rodent.isAlive)
+            {
+                rodent.ForceDeath();
+            } 
+        }
+    }
+
+    #endregion
     public static void OnRodentDeath()
     {
         UpdateNumberOfRodents();
@@ -140,7 +162,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     public static void OnPiperPanic()
     {
         instance.HideRodentsUI();
@@ -159,16 +180,36 @@ public class GameManager : MonoBehaviour
     private void OnAllRodetsAreDead()
     {
         piper.Dance();
+        OnWin();
     }
 
     public void RestartLevel()
     {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.buildIndex);
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void NextLevel()
+    {
+        Debug.Log("NextLevel()");
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        int sceneCount = SceneManager.sceneCountInBuildSettings;
+        if (nextSceneIndex >= sceneCount)//TODO: This trick ain't gonna work once we add non-level scenes, beware...
+        {
+            Debug.Log($"nextSceneIndex = {nextSceneIndex}, sceneCount = {sceneCount} , going back to 0");
+
+            nextSceneIndex = 0;
+        }
+        SceneManager.LoadScene(nextSceneIndex);
     }
 
     public static void OnGameOver()
     {
         instance.gameOverPanel.SetActive(true);
+    }
+
+    public static void OnWin()
+    {
+        instance.winPanel.SetActive(true);
     }
 }
