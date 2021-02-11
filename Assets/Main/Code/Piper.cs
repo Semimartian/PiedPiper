@@ -148,7 +148,7 @@ public class Piper : MonoBehaviour
           //  Color.Lerp(minMusicalStaminaColour, maxMusicalStaminaColour, musicalStamina);
     }
 
-    private void Die()
+    public void Die()
     {
         Debug.Log("IsSkeleton");
         isAlive = false;
