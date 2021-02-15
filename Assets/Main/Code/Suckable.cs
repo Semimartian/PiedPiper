@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class Suckable : MonoBehaviour
 {
-    [SerializeField] [Range(0, 1)] private float suckChance;
     private bool isSuckable = true;
 
     public abstract Rigidbody GetRigidBody();

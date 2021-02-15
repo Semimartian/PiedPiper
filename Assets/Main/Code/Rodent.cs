@@ -180,6 +180,12 @@ public class Rodent : Suckable
 
         }
     }
+
+    public void ForceDeath()
+    {
+
+        Squash();
+    }
     #endregion
 
     private void LookAt(Vector3 lookAtPosition, bool disregardY)

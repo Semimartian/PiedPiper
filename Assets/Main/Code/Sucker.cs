@@ -30,7 +30,7 @@ public class Sucker : MonoBehaviour
         if (suckerEnterance.IsOpen && other.gameObject.TryGetComponent(out Suckable suckable)) {
             Vector3 attractionPoint = attractionField.attractionPoint.position;
             Vector3 suckablePosition = suckable.transform.position;
-            float distanceFromSucker = Vector3.Distance(attractionPoint, suckablePosition);
+            float distanceFromSucker = Vector3.Distance(attractionPoint, suckablePosition);//TODO: Use squared distance to save calculations
             if (distanceFromSucker <= attractionField.radius)
             {
                 // Debug.Log("distanceFromMagnet" + distanceFromMagnet);

@@ -47,6 +47,7 @@ public class SoundManager : MonoBehaviour
 
         for (int i = 0; i < sourcesCount; i++)
         {
+            //TODO: Is there a way to migrate objects we create to other scenes?
             availableAudioSources.Add(Instantiate(soundData.oneShotSoundPreFab));
             availableAudioSources[i].gameObject.SetActive(false);
             availableAudioSources[i].gameObject.transform.SetParent(soundsParent);
