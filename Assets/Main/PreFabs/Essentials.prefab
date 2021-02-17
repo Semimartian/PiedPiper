@@ -3624,6 +3624,7 @@ MonoBehaviour:
   AccelarationPerSecond: 3.2
   deaccelerationPerSecond: 4.2
   animator: {fileID: 74967300746001450}
+  gameOverPanel: {fileID: 0}
   musicalStaminaReductionPerSecond: 0.075
   musicalStaminaColours:
     serializedVersion: 2

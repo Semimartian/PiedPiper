@@ -168,7 +168,22 @@ public class Piper : MonoBehaviour
         deadBody.SetTrigger("Play");
 
         mainCamera.ChangeState(MainCamera.CameraStates.Static);
+    }
 
+    public void Squash()
+    {
+        isAlive = false;
+        rigidbody.isKinematic = true;
+
+        hat.transform.SetParent(null);
+        hat.isKinematic = false;
+        Collider[] hatColliders = hat.GetComponentsInChildren<Collider>();
+        for (int i = 0; i < hatColliders.Length; i++)
+        {
+            hatColliders[i].enabled = true;
+        }
+        animator.SetTrigger("Squash");
+        mainCamera.ChangeState(MainCamera.CameraStates.Static);
     }
 
     private IEnumerator StopPlaying()

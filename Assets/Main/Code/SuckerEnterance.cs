@@ -7,6 +7,7 @@ public class SuckerEnterance : MonoBehaviour
     [SerializeField] private Transform exit;
     [SerializeField] private AudioSource cuttingSound;
     [SerializeField] private int maxSucked;
+    [SerializeField] private ParticleSystem suckingParticles;
     private bool isOpen = true;
     private int rodentsInside = 0;
     private int totalSucked = 0;
@@ -25,9 +26,15 @@ public class SuckerEnterance : MonoBehaviour
             Invoke("SpawnHairs", 1.2f);
             if (totalSucked >= maxSucked)
             {
-                isOpen = false;
+                Close();
             }
         }
+    }
+
+    private void Close()
+    {
+        isOpen = false;
+        suckingParticles.Stop();
     }
 
     private void SpawnHairs()
