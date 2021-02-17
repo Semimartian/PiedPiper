@@ -28,8 +28,8 @@ public class LevelSpawner : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            collider.enabled = false;
             Instantiate(prefab, new Vector3(transform.position.x, transform.position.y, transform.position.z + floorMeshRenderer.bounds.size.z), Quaternion.identity, transform.parent);
+            collider.enabled = false;
         }
     }
 }
