@@ -18245,6 +18245,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 169d9e43961d8944d907cb797147dd8e, type: 3}
+--- !u!4 &1232382459 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6301394384630153545, guid: a8880233ec8884548b6337766aa2eb52,
+    type: 3}
+  m_PrefabInstance: {fileID: 1590295373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1238584703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19443,7 +19449,7 @@ PrefabInstance:
     - target: {fileID: 1497501409, guid: 280053154239720458c4b6093bfea66a, type: 3}
       propertyPath: anchor
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1232382459}
     - target: {fileID: 1996182709073382, guid: 280053154239720458c4b6093bfea66a, type: 3}
       propertyPath: m_Name
       value: CloudRing_1
@@ -19491,18 +19497,6 @@ PrefabInstance:
     - target: {fileID: 4174052520163144, guid: 280053154239720458c4b6093bfea66a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4174052520163144, guid: 280053154239720458c4b6093bfea66a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.107039995
-      objectReference: {fileID: 0}
-    - target: {fileID: 4174052520163144, guid: 280053154239720458c4b6093bfea66a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.107039995
-      objectReference: {fileID: 0}
-    - target: {fileID: 4174052520163144, guid: 280053154239720458c4b6093bfea66a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.107039995
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 280053154239720458c4b6093bfea66a, type: 3}
