@@ -177,6 +177,7 @@ public class Piper : MonoBehaviour
         isPlaying = false;
         ToggleWalking(false);
         noteParticles.Stop();
+        musicAudioSource.Stop();
         rigidbody.isKinematic = true;
         animator.SetTrigger("Squash");
         mainCamera.ChangeState(MainCamera.CameraStates.Static);
