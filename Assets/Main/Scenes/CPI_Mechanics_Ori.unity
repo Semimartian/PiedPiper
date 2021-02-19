@@ -24224,16 +24224,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -15.561528
       objectReference: {fileID: 0}
-    - target: {fileID: 6301394383849655521, guid: a8880233ec8884548b6337766aa2eb52,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6301394383849655527, guid: a8880233ec8884548b6337766aa2eb52,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.63
-      objectReference: {fileID: 0}
     - target: {fileID: 6301394384630153545, guid: a8880233ec8884548b6337766aa2eb52,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -24242,7 +24232,7 @@ PrefabInstance:
     - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
         type: 3}
       propertyPath: musicalStaminaReductionPerSecond
-      value: 0.02
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 6301394384630153550, guid: a8880233ec8884548b6337766aa2eb52,
         type: 3}
@@ -24268,21 +24258,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.14227648
-      objectReference: {fileID: 0}
-    - target: {fileID: 6798311869013344770, guid: a8880233ec8884548b6337766aa2eb52,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6798311869013344771, guid: a8880233ec8884548b6337766aa2eb52,
-        type: 3}
-      propertyPath: offset.y
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6798311869013344771, guid: a8880233ec8884548b6337766aa2eb52,
-        type: 3}
-      propertyPath: offset.z
-      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 6875607389615185218, guid: a8880233ec8884548b6337766aa2eb52,
         type: 3}
