@@ -106,10 +106,6 @@ public class Piper : MonoBehaviour
         }
 
         #region Debugging:
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            Die();
-        }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -149,7 +145,7 @@ public class Piper : MonoBehaviour
           //  Color.Lerp(minMusicalStaminaColour, maxMusicalStaminaColour, musicalStamina);
     }
 
-    public void Die()
+    public void BecomeASkeleton()
     {
         Debug.Log("IsSkeleton");
         isAlive = false;
@@ -177,9 +173,12 @@ public class Piper : MonoBehaviour
         isPlaying = false;
         ToggleWalking(false);
         noteParticles.Stop();
+        musicAudioSource.Stop();
         rigidbody.isKinematic = true;
         animator.SetTrigger("Squash");
         mainCamera.ChangeState(MainCamera.CameraStates.Static);
+        GameManager.OnGameOver(1.5f);
+
     }
 
     private IEnumerator StopPlaying()
@@ -198,8 +197,8 @@ public class Piper : MonoBehaviour
 
         GameManager.OnPiperPanic();
         yield return new WaitForSeconds(panicDuration);
-        Die();
-        GameManager.OnGameOver();
+        BecomeASkeleton();
+        GameManager.OnGameOver(0.5f);
     }
 
     public void Dance()
@@ -228,8 +227,7 @@ public class Piper : MonoBehaviour
             /* rigidbody.rotation =
                  Quaternion.RotateTowards(rigidbody.rotation, finalRotation,)*/
             yield return null;
-        }
-       
+        }      
     }
 
 

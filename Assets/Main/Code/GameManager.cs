@@ -203,13 +203,18 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(nextSceneIndex);
     }
 
-    public static void OnGameOver()
+    public static void OnGameOver(float delay)
     {
-        instance.gameOverPanel.SetActive(true);
+        instance.Invoke("ShowGameOverScreen", delay);
     }
 
     public static void OnWin()
     {
         instance.winPanel.SetActive(true);
+    }
+
+    private void ShowGameOverScreen()
+    {
+        instance.gameOverPanel.SetActive(true);
     }
 }

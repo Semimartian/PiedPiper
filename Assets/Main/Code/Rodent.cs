@@ -27,6 +27,7 @@ public class Rodent : Suckable
     }
 
     private IdleRoutineData idleRoutineData;
+    private const int IDLE_ANIMATIONS_COUNT = 2;//Why don'y the animation controller thing have consts and shieeet?
     // public const float DESIRED_DISTANCE_FROM_KIN = 0;// 1f;
     // public const float ACCEPTABLE_DISTANCE_FROM_KIN = 1f;
 
@@ -49,6 +50,13 @@ public class Rodent : Suckable
       //  Invoke("Tweet", Random.Range(0f, 12f));
     }
 
+    private void RandomiseIdleAnimation()
+    {
+        int value = Random.Range(0, IDLE_ANIMATIONS_COUNT);
+        animator.SetInteger("IdleIndex", value);
+
+    }
+
     public void ModifySpeed(ref float deltaTime, ref Vector3 targetPosition,  float desiredSquaredDistance)
     {
         float modifier = deltaTime *
@@ -69,8 +77,8 @@ public class Rodent : Suckable
         }
         else
         {
+            RandomiseIdleAnimation();
             animator.SetBool("IsWalking", false);
-
         }
     }
 
@@ -176,8 +184,8 @@ public class Rodent : Suckable
         }
         else
         {
+            RandomiseIdleAnimation();
             animator.SetBool("IsWalking", false);
-
         }
     }
 
