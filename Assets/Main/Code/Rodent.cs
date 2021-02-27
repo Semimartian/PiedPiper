@@ -212,7 +212,8 @@ public class Rodent : Suckable
         DeathCry();
         Vector3 position = myTransform.position;
         SoundManager.PlayOneShotSoundAt(SoundNames.Squash, position);
-        EffectsManager.PlayEffectAt(EffectNames.Blood, position);
+        //EffectsManager.PlayEffectAt(EffectNames.Blood, position);
+        Spawner.instance.Spawn(Spawner.SpawnableObjects.Blood, myTransform.position);
         animator.SetTrigger("Squash");
 
         collider.enabled = false;
@@ -250,7 +251,9 @@ public class Rodent : Suckable
             MouseTrap mouseTrap = other.GetComponentInParent<MouseTrap>();
             if (mouseTrap != null)
             {
-                EffectsManager.PlayEffectAt(EffectNames.Blood, myTransform.position);
+                //EffectsManager.PlayEffectAt(EffectNames.Blood, myTransform.position);
+                Spawner.instance.Spawn(Spawner.SpawnableObjects.Blood, myTransform.position);
+
                 DeathCry();
                 mouseTrap.Trigger();
                 Die();
@@ -290,8 +293,7 @@ public class Rodent : Suckable
 
             Vector3 myPosition = this.myTransform.position;
 
-            Transform flameTransform = Spawner.instance.SpawnFlame().transform;
-            flameTransform.transform.position = myPosition;
+           Spawner.instance.Spawn(Spawner.SpawnableObjects.Flame, myPosition);
 
             Invoke("TurnIntoDrumStick", 0.2f);//HARDCODED
         }
@@ -304,10 +306,8 @@ public class Rodent : Suckable
         collider.enabled = false;
         Vector3 myPosition = this.myTransform.position;
 
-        Transform puffTransform = Spawner.instance.SpawnPuff().transform;
-        puffTransform.position = myPosition;
-
-        Transform drumStickTransform = Spawner.instance.SpawnDrumStick().transform;
+        Spawner.instance.Spawn(Spawner.SpawnableObjects.Puff, myPosition);
+        Transform drumStickTransform = Spawner.instance.Spawn(Spawner.SpawnableObjects.DrumStick).transform;
         drumStickTransform.rotation = myTransform.rotation;
         drumStickTransform.position = myPosition;
         drumStickTransform.SetParent(myTransform);
