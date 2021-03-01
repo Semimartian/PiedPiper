@@ -41,7 +41,7 @@ public class SuckerEnterance : MonoBehaviour
     {
         rodentsInside--;
         //hairParticleSystem.Play();
-       Transform effect = Spawner.instance.SpawnHairStream().transform;//TODO: innefficient
+        Transform effect = Spawner.instance.Spawn(Spawner.SpawnableObjects.HairStream).transform;//TODO: innefficient
         effect.position = exit.position;
 
     }

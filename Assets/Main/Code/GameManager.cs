@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject winPanel;
+    [SerializeField] private GameObject victoryScene;
+
 
     private void Awake()
     {
@@ -37,7 +39,7 @@ public class GameManager : MonoBehaviour
 
         gameOverPanel.SetActive(false);
         winPanel.SetActive(false);
-
+        victoryScene.SetActive(false);
     }
 
     private void MakeAllRodentsFollowPiper()
@@ -211,6 +213,8 @@ public class GameManager : MonoBehaviour
     public static void OnWin()
     {
         instance.winPanel.SetActive(true);
+        instance.victoryScene.SetActive(true);
+
     }
 
     private void ShowGameOverScreen()
