@@ -1,0 +1,12 @@
+{
+  "included": true,
+  "firebase": {
+    "googleAppId": "1:886312919228:android:8469bd85c5d386a2b4b0b9",
+    "apiKey": "AIzaSyANl5aIVfoUJAovu0NIPBq7yYW8h3RKr-k",
+    "projectId": "cl-pied-piper",
+    "clientId": "886312919228-g86bm4ki72mtl97tpohm31o3kqj79ito.apps.googleusercontent.com",
+    "senderId": "886312919228",
+    "storageBucket": "cl-pied-piper.appspot.com",
+    "databaseURL": ""
+  }
+}
