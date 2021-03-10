@@ -98,7 +98,7 @@ MonoBehaviour:
   exit: {fileID: 910122488}
   cuttingSound: {fileID: 354306676904344008}
   maxSucked: 15
-  suckingParticles: {fileID: 8638084142797535296}
+  suckingParticles: {fileID: 8638084142797535298}
 --- !u!135 &110568465
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -959,15 +959,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc0cd1232bcedb448b9d773249153eab, type: 3}
---- !u!1 &8638084142797535296 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8638084141782913794, guid: fc0cd1232bcedb448b9d773249153eab,
-    type: 3}
-  m_PrefabInstance: {fileID: 1300654914}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8638084142797535309 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8638084141782913807, guid: fc0cd1232bcedb448b9d773249153eab,
+    type: 3}
+  m_PrefabInstance: {fileID: 1300654914}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8638084142797535298 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8638084141782913792, guid: fc0cd1232bcedb448b9d773249153eab,
     type: 3}
   m_PrefabInstance: {fileID: 1300654914}
   m_PrefabAsset: {fileID: 0}
