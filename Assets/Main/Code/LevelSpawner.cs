@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class LevelSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject prefab;
+   // [SerializeField] private GameObject prefab;
     [SerializeField] private GameObject floor;
     private MeshRenderer floorMeshRenderer;
-    private BoxCollider collider;
+    private BoxCollider triggerCollider;
 
     void Start()
     {
         floorMeshRenderer = floor.GetComponent<MeshRenderer>();
-        collider = GetComponent<BoxCollider>();
+        triggerCollider = GetComponent<BoxCollider>();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
-            Instantiate(prefab, new Vector3(transform.position.x, transform.position.y, transform.position.z + floorMeshRenderer.bounds.size.z), Quaternion.identity, transform.parent);
-
+            DuplicateForward();
         }
     }
 
@@ -28,8 +27,15 @@ public class LevelSpawner : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Instantiate(prefab, new Vector3(transform.position.x, transform.position.y, transform.position.z + floorMeshRenderer.bounds.size.z), Quaternion.identity, transform.parent);
-            collider.enabled = false;
+            DuplicateForward();
+            triggerCollider.enabled = false;
         }
+    }
+
+    private void DuplicateForward()
+    {
+        Vector3 position = transform.position;
+        Vector3 clonePosition = new Vector3(position.x, position.y, position.z + floorMeshRenderer.bounds.size.z);
+        Instantiate(gameObject, clonePosition, Quaternion.identity, transform.parent);
     }
 }
