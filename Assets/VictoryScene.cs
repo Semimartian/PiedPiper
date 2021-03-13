@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class VictoryScene : MonoBehaviour
 {
-   [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] private ParticleSystem confettiShower;
+    [SerializeField] private ParticleSystem leftConfetti;
+    [SerializeField] private ParticleSystem rightConfetti;
+
     private void OnEnable()
     {
         StartCoroutine(PlayCoRoutine());
@@ -13,11 +16,13 @@ public class VictoryScene : MonoBehaviour
     {
         StartCoroutine(PlayCoRoutine());
     }*/
-
     private IEnumerator PlayCoRoutine()
     {
         Debug.Log("YAY");
-        particleSystem.Play();
-        yield return null;
+        leftConfetti.Play();
+        yield return new WaitForSeconds(0.5f);
+        rightConfetti.Play();
+        yield return new WaitForSeconds(0.5f);
+        confettiShower.Play();
     }
 }

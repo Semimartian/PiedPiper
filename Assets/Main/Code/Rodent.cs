@@ -269,7 +269,7 @@ public class Rodent : Suckable
                 if (hotSurface != null)
                 {
 
-                    bool shouldBurn = (Random.Range(0, hotSurface.burnChance) == 0);
+                    bool shouldBurn = hotSurface.ShouldBurn();
                     if (shouldBurn)
                     {
                         isBurning = true;
