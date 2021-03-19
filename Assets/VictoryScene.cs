@@ -7,6 +7,7 @@ public class VictoryScene : MonoBehaviour
     [SerializeField] private ParticleSystem confettiShower;
     [SerializeField] private ParticleSystem leftConfetti;
     [SerializeField] private ParticleSystem rightConfetti;
+    [SerializeField] private Animator animator;
 
     private void OnEnable()
     {
@@ -19,6 +20,7 @@ public class VictoryScene : MonoBehaviour
     private IEnumerator PlayCoRoutine()
     {
         Debug.Log("YAY");
+        animator.SetTrigger("Start");
         leftConfetti.Play();
         yield return new WaitForSeconds(0.5f);
         rightConfetti.Play();
