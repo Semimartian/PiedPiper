@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id,@string/admob_app_id" xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_crash_reporting_api_key" translatable="false">
+  </string>
+  <string name="default_web_client_id" translatable="false">
+  </string>
+  <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+  <string name="firebase_database_url" translatable="false">https://shmulikfbtest.firebaseio.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">886312919228</string>
+  <string name="google_storage_bucket" translatable="false">cl-pied-piper.appspot.com</string>
+  <string name="project_id" translatable="false">cl-pied-piper</string>
+  <string name="google_api_key" translatable="false">AIzaSyANl5aIVfoUJAovu0NIPBq7yYW8h3RKr-k</string>
+  <string name="google_app_id" translatable="false">1:886312919228:android:8469bd85c5d386a2b4b0b9</string>
+  <string name="client_id" translatable="false">886312919228-g86bm4ki72mtl97tpohm31o3kqj79ito.apps.googleusercontent.com</string>
+</resources>
