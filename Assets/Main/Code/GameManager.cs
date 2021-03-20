@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Tabtale.TTPlugins;
-
 public class GameManager : MonoBehaviour
 {
     //[SerializeField] private Transform[] birds;
@@ -24,7 +22,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        TTPCore.Setup(); // This line HAS to be first
         Initailise();
     }
 
