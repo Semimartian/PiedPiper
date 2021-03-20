@@ -162,6 +162,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
+    Android: com.partybaggames.piedpiper
     Standalone: com.partybaggames.piedpiper
   buildNumber: {}
   AndroidBundleVersionCode: 1
