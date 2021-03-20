@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class HotSurface : MonoBehaviour
 {
-    public byte burnChance;
+    private static byte maxBurnChance = 5;
+    private static byte minBurnChance = 2;
+
+    public bool ShouldBurn()
+    {
+        return (Random.Range(0, maxBurnChance) < minBurnChance);
+    }
 
     private void Start()
     {

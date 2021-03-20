@@ -111,6 +111,11 @@ public class Piper : MonoBehaviour
         {
             StartCoroutine(TurnBack());
         }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            musicalStamina = 0.1f;
+        }
         #endregion
     }
 

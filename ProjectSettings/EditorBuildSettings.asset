@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Main/Scenes/CPI_Mechanics_Oren.unity
-    guid: d11b40bb7bef631448aede8db140e967
+    path: Assets/Main/Scenes/Levels/Level0.unity
+    guid: b3fe534ab73005a47a13a3f9567afb88
+  - enabled: 1
+    path: Assets/Main/Scenes/Levels/Level1.unity
+    guid: ab6b30dc621aea746961dbf282f16249
+  - enabled: 1
+    path: Assets/Main/Scenes/Levels/Level2.unity
+    guid: 7624062b0d85a2247bb34a6635ea750b
   m_configObjects: {}
