@@ -18,6 +18,8 @@ extern "C" {
         id<TTPIbanners> bannersService = [serviceManager get:@protocol(TTPIbanners)];
         if(bannersService != nil){
             return [bannersService show];
+        } else {
+            [serviceManager markPendingBannersShow];
         }
         return false;
     }
