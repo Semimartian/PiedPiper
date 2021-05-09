@@ -8,8 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GizMat
-  m_Shader: {fileID: 211, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _ALPHATEST_ON _EMISSION _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
+  m_Shader: {fileID: 4800000, guid: 5eb56f5bd648eab4984f85fa800e1f3c, type: 3}
+  m_ShaderKeywords: CURVEDWORLD_BEND_ID_1 CURVEDWORLD_BEND_TYPE_CLASSICRUNNER_Z_POSITIVE
+    _ALPHATEST_ON _EMISSION _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -94,5 +95,6 @@ Material:
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _Color: {r: 1, g: 0.011764707, b: 0, a: 1}
     - _ColorAddSubDiff: {r: 1, g: 0, b: 0, a: 0}
+    - _CurvedWorldBendSettings: {r: 2, g: 1, b: 0, a: 0}
     - _EmissionColor: {r: 16.188803, g: 1.7163876, b: 0.25427392, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
